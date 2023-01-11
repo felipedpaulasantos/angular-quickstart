@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, Injector, Type, Component } from '@angular/core';
+import { ComponentFactoryResolver, Injector } from '@angular/core';
 
 export interface ContextoInjecaoComponente {
   resolver: ComponentFactoryResolver;

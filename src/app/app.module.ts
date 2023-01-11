@@ -1,83 +1,76 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, LOCALE_ID } from "@angular/core";
-import { HttpClientModule, HTTP_INTERCEPTORS  } from "@angular/common/http";
-import { AppComponent } from "./app.component";
+import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ToastrModule } from "ngx-toastr";
+import { registerLocaleData } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import localePt from "@angular/common/locales/pt";
+registerLocaleData(localePt);
 
-import { AppRoutingModule } from "./app-routing.module";
+import { OAuthModule } from "angular-oauth2-oidc";
+import { NgxSpinnerModule } from "ngx-spinner";
+import { NgSelectModule } from "@ng-select/ng-select";
+import { NgxUiLoaderModule } from "ngx-ui-loader";
+import { ToastrModule } from "ngx-toastr";
 import { DataTablesModule } from "angular-datatables";
 import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 import { PERFECT_SCROLLBAR_CONFIG } from "ngx-perfect-scrollbar";
 import { PerfectScrollbarConfigInterface } from "ngx-perfect-scrollbar";
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true,
-  wheelPropagation: false
+	suppressScrollX: true,
+	wheelPropagation: false
 };
-import { registerLocaleData } from "@angular/common";
-import localePt from "@angular/common/locales/pt";
-registerLocaleData(localePt);
-
-import { ErrorsModule } from "./errors/errors.module";
-import { MenuModule } from "./menu/menu.module";
-import { MessagesModule } from "./messages/messages.module";
-import { OAuthModule } from "angular-oauth2-oidc";
-import { LoaderInterceptor } from "./shared/interceptors/loader.interceptor";
-import { SharedModule } from "./shared/shared.module";
-import { HomeComponent } from "./home/home.component";
-
-import { GuiaCaixaModule } from "./guia-caixa/guia-caixa.module";
-import { CoresModule } from "./demonstracao/cores/cores.module";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { ResizableModule } from "angular-resizable-element";
-import { NgxSpinnerModule } from "ngx-spinner";
-import { NgSelectModule } from "@ng-select/ng-select";
-import { NgxUiLoaderModule } from "ngx-ui-loader";
 import { IConfig } from "ngx-mask/lib/ngx-mask.config";
-
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
+import { AppComponent } from "./app.component";
+import { ErrorsModule } from "./errors/errors.module";
+import { MenuModule } from "./menu/menu.module";
+import { GuiaCaixaModule } from "./guia-caixa/guia-caixa.module";
+import { SharedModule } from "./shared/shared.module";
+import { AppRoutingModule } from "./app-routing.module";
+import { HomeModule } from "./home/home.module";
+
+
+
 @NgModule({
-   declarations: [
-      AppComponent,
-      HomeComponent
-   ],
-   imports: [
-      BrowserModule,
-      BrowserAnimationsModule,
-      HttpClientModule,
-      FormsModule,
-      ReactiveFormsModule,
-      AppRoutingModule,
-      CoresModule,
-      MenuModule,
-      MessagesModule,
-      ErrorsModule,
-      SharedModule,
-      PerfectScrollbarModule,
-      DataTablesModule,
-      GuiaCaixaModule,
-      ResizableModule,
-      NgxSpinnerModule,
-      NgSelectModule,
-      NgxUiLoaderModule,
-      //NgxMaskModule.forRoot(),
-      OAuthModule.forRoot(),
-      ToastrModule.forRoot({
-        timeOut: 5000,
-        progressBar: false,
-        positionClass: "toast-bottom-center",
-        closeButton: true,
-        tapToDismiss: false,
-        preventDuplicates: true,
-        enableHtml: true
-      })
-   ],
- 	providers: [
-		{ provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
-/*  		{ provide: HTTP_INTERCEPTORS,	useClass: LoaderInterceptor, multi: true }, */
-    { provide: LOCALE_ID, useValue: "pt" }
+	declarations: [
+		AppComponent
 	],
-	bootstrap: [ AppComponent ]
+	imports: [
+		BrowserModule,
+		BrowserAnimationsModule,
+		HttpClientModule,
+		FormsModule,
+		ReactiveFormsModule,
+		AppRoutingModule,
+		MenuModule,
+		HomeModule,
+		ErrorsModule,
+		SharedModule,
+		PerfectScrollbarModule,
+		DataTablesModule,
+		GuiaCaixaModule,
+		NgxSpinnerModule,
+		NgSelectModule,
+		NgxUiLoaderModule,
+		//NgxMaskModule.forRoot(),
+		OAuthModule.forRoot(),
+		ToastrModule.forRoot({
+			timeOut: 5000,
+			progressBar: false,
+			positionClass: "toast-bottom-center",
+			closeButton: true,
+			tapToDismiss: false,
+			preventDuplicates: true,
+			enableHtml: true
+		})
+	],
+	providers: [
+		{ provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
+		/*  		{ provide: HTTP_INTERCEPTORS,	useClass: LoaderInterceptor, multi: true }, */
+		{ provide: LOCALE_ID, useValue: "pt" }
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
