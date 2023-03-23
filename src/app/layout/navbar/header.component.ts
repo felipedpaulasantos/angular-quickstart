@@ -7,7 +7,7 @@ import { User } from "../../authentication/users/user";
 import { ModalService } from "src/app/guia-caixa/services/modal.service";
 import { SideMenuService } from "../side-menu/side-menu.service";
 import { Tema } from "src/app/guia-caixa/services/style-guia-caixa.service";
-import { LOGO_CAIXA_BRANCO_SRC, LOGO_COMPLETO_BRANCO_SRC, Meses } from "src/app/guia-caixa/constants/constants";
+import { LOGO_CAIXA_BRANCO_SRC, LOGO_COMPLETO_BRANCO_SRC, LOGO_HEADER_ABREV, LOGO_HEADER_COMPLETO, Meses } from "src/app/guia-caixa/constants/constants";
 import { StyleService } from "src/app/services/style.service";
 import { GlobalThemes } from "src/app/models/global-style";
 
@@ -20,11 +20,10 @@ export class HeaderComponent implements OnInit {
 
 	useImgLogo = false;
 	useHeaderLogo = true;
-
 	imgLogoMenuClosed = LOGO_CAIXA_BRANCO_SRC;
   imgLogoMenuOpen = LOGO_COMPLETO_BRANCO_SRC;
-	headerLogoMenuClosed = "Q";
-	headerLogoMenuOpen = "QUICKSTART";
+	headerLogoMenuClosed = LOGO_HEADER_ABREV;
+	headerLogoMenuOpen = LOGO_HEADER_COMPLETO;
 
   @ViewChild("headerGeral") headerGeral: ElementRef;
   @Input() tema: Tema;

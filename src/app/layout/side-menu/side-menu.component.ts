@@ -9,6 +9,7 @@ import { AccordionConfig } from "src/app/shared/components/accordion/types/accor
 import { AccordionMenu } from "src/app/shared/components/accordion/types/accordion-menu";
 import { GuiaCaixaStyleService, Tema } from "src/app/guia-caixa/services/style-guia-caixa.service";
 import { mockedSideMenuItems } from "src/app/shared/constants";
+import { LOGO_HEADER_ABREV } from "src/app/guia-caixa/constants/constants";
 
 const MENU_ROUTE_PROPERTY = "menuLateral";
 const MOBILE_BREAKPOINT = 991.9;
@@ -39,6 +40,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   @ViewChild("inputSearch", { read: ElementRef })
   inputSearch: ElementRef;
 
+	logo = LOGO_HEADER_ABREV;
   larguraTela: number;
   isAberto: boolean;
 
