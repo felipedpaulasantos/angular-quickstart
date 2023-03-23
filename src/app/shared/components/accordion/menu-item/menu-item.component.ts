@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from "@angular/core";
 import { Router } from "@angular/router";
-import { SideMenuService } from "src/app/menu/side-menu/side-menu.service";
+import { SideMenuService } from "src/app/layout/side-menu/side-menu.service";
 import { AccordionMenu } from "../types/accordion-menu";
 
 @Component({

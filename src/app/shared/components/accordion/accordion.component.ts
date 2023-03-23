@@ -3,7 +3,7 @@ import { Config } from "protractor";
 import { AccordionMenu } from "./types/accordion-menu";
 import { Router, NavigationEnd } from "@angular/router";
 import { Location } from "@angular/common";
-import { SideMenuService } from "src/app/menu/side-menu/side-menu.service";
+import { SideMenuService } from "src/app/layout/side-menu/side-menu.service";
 
 @Component({
   selector: "app-accordion",

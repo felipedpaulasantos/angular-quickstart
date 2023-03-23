@@ -25,11 +25,11 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
 import { AppComponent } from "./app.component";
 import { ErrorsModule } from "./errors/errors.module";
-import { MenuModule } from "./menu/menu.module";
 import { GuiaCaixaModule } from "./guia-caixa/guia-caixa.module";
 import { SharedModule } from "./shared/shared.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { HomeModule } from "./home/home.module";
+import { LayoutModule } from "./layout/menu.module";
 
 
 
@@ -44,7 +44,7 @@ import { HomeModule } from "./home/home.module";
 		FormsModule,
 		ReactiveFormsModule,
 		AppRoutingModule,
-		MenuModule,
+		LayoutModule,
 		HomeModule,
 		ErrorsModule,
 		SharedModule,

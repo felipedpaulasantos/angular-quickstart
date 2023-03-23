@@ -4,11 +4,12 @@ import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
 import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 
-import { HeaderComponent } from "./navbar/header.component";
+
 import { SideMenuComponent } from "./side-menu/side-menu.component";
-import { SharedModule } from "../shared/shared.module";
-import { FooterComponent } from "./footer/footer.component";
 import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
+import { HeaderComponent } from "./navbar/header.component";
+import { FooterComponent } from "./footer/footer.component";
+import { SharedModule } from "../shared/shared.module";
 
 
 
@@ -33,4 +34,4 @@ import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
     BreadcrumbComponent
   ]
 })
-export class MenuModule { }
+export class LayoutModule { }
