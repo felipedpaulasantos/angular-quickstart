@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ElementRef, ViewChild, Renderer2 } from "@angular/core";
 import { OAuthService } from "angular-oauth2-oidc";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 
 import { UserService } from "../../authentication/users/user.service";
 import { User } from "../../authentication/users/user";
@@ -18,8 +18,13 @@ import { GlobalThemes } from "src/app/models/global-style";
 })
 export class HeaderComponent implements OnInit {
 
-  logoXBranco = LOGO_CAIXA_BRANCO_SRC;
-  logoCompletoBranco = LOGO_COMPLETO_BRANCO_SRC;
+	useImgLogo = false;
+	useHeaderLogo = true;
+
+	imgLogoMenuClosed = LOGO_CAIXA_BRANCO_SRC;
+  imgLogoMenuOpen = LOGO_COMPLETO_BRANCO_SRC;
+	headerLogoMenuClosed = "Q";
+	headerLogoMenuOpen = "QUICKSTART";
 
   @ViewChild("headerGeral") headerGeral: ElementRef;
   @Input() tema: Tema;
@@ -37,8 +42,7 @@ export class HeaderComponent implements OnInit {
     private userService: UserService,
     private modalService: ModalService,
     private sidemenuService: SideMenuService,
-    private styleService: StyleService,
-    private renderer: Renderer2
+    private styleService: StyleService
   ) {
     this.user$ = this.userService.perfil;
     this.sidemenuService.isAberto$.subscribe(isAberto => this.isMenuAberto = isAberto);
@@ -46,6 +50,7 @@ export class HeaderComponent implements OnInit {
     this.styleService.currentGlobalStyle$.subscribe(theme => this.currentTheme = theme);
     this.showDate();
     this.setDefaultTheme();
+		console.log(this.useHeaderLogo);
   }
 
   fontSizes = [
@@ -161,5 +166,10 @@ export class HeaderComponent implements OnInit {
   setDefaultTheme() {
     this.styleService.setDefaultStyle();
   }
+
+	getLogo(): string | null {
+		if (this.useImgLogo) return this.isMenuAberto ? this.imgLogoMenuOpen : this.imgLogoMenuClosed;
+		if (this.useHeaderLogo) return this.isMenuAberto ? this.headerLogoMenuOpen : this.headerLogoMenuClosed;
+	}
 
 }

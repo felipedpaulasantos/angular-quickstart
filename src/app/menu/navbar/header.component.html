@@ -6,7 +6,12 @@
     </span>
     <div id="spanLogo" class="h-100"  [ngClass]="{'menu-is-aberto': isMenuAberto}">
       <div (dblclick)="toggleHeaderBackground()" class="d-flex align-items-center h-100">
-        <img [src]="isMenuAberto ? logoCompletoBranco : logoXBranco" class="img-fluid img-logo rounded mx-auto" alt="Logotipo">
+        <ng-container *ngIf="useImgLogo; else headerLogoContainer">
+					<img [src]="getLogo()" class="img-fluid img-logo rounded mx-auto" alt="Logotipo">
+				</ng-container>
+				<ng-template #headerLogoContainer>
+					<h3 class="subtitulo my-0 py-0 mx-auto">{{ getLogo() }}</h3>
+				</ng-template>
       </div>
     </div>
 
