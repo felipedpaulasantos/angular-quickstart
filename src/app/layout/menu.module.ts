@@ -7,7 +7,7 @@ import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 
 import { SideMenuComponent } from "./side-menu/side-menu.component";
 import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
-import { HeaderComponent } from "./navbar/header.component";
+import { HeaderComponent } from "./navbar/navbar.component";
 import { FooterComponent } from "./footer/footer.component";
 import { SharedModule } from "../shared/shared.module";
 

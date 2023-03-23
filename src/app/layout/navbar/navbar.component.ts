@@ -12,9 +12,9 @@ import { StyleService } from "src/app/services/style.service";
 import { GlobalThemes } from "src/app/models/global-style";
 
 @Component({
-  selector: "app-header",
-  templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.scss"]
+  selector: "app-navbar",
+  templateUrl: "./navbar.component.html",
+  styleUrls: ["./navbar.component.scss"]
 })
 export class HeaderComponent implements OnInit {
 
