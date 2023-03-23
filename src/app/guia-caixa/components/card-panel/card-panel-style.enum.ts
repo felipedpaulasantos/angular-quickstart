@@ -1,0 +1,5 @@
+export enum CardPanelStyle {
+	SIMPLE = "SIMPLE",
+	VERTICAL = "VERTICAL",
+	HORIZONTAL = "HORIZONTAL"
+}

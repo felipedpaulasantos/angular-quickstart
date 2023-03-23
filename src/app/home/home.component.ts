@@ -33,8 +33,7 @@ export class HomeComponent implements OnInit {
   }
 
   groupColumns(resources: any[]): any[] {
-
-    const filteredResources = this.resources.filter(resource => {
+    const filteredResources = resources.filter(resource => {
       return (resource.enabled && resource.isLink) &&
       (resource.name != "Início");
     });

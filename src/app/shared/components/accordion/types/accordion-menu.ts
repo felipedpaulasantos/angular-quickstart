@@ -3,6 +3,7 @@ export interface AccordionMenu {
   url: string;
   isLink: boolean;
   level: number;
+	description?: string;
   iconClass?: string;
   active?: boolean;
   enabled?: boolean;

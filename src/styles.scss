@@ -681,7 +681,10 @@ ul.nav.nav-pills li a {
   transition: box-shadow 0.2s ease-in-out;
   background-color: var(--cxBase);
   color: var(--cxContrast);
+	border-style: solid;
+	border-width: 2px;
   border-color: var(--cxCancel);
+	transition: border-color 0.1s;
   .card-header {
     background-color: inherit;
     border: none;
@@ -701,6 +704,10 @@ ul.nav.nav-pills li a {
     border-top: 0;
     border-radius: var(--cxBorderRadius);
   }
+}
+.card.card-hover:hover {
+	border-color: var(--cxAccent);
+	border-width: 2px;
 }
 .card.card-hover::after {
   content: "";

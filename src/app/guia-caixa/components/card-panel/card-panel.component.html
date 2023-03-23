@@ -1,0 +1,51 @@
+<div *ngFor="let cols of rows" class="row d-flex justify-content-center">
+  <div *ngFor="let resource of cols" class="col-10 col-md-6 col-xl-4 d-flex justify-content-around mb-3">
+
+		<ng-container *ngIf="cardStyle == cardStyleEnum.SIMPLE">
+			<div class="card card-hover w-75" role="button" [routerLink]="resource.url">
+				<div class="card-body">
+					<div class="d-flex align-items-center justify-content-center text-center">
+						<h5 class="header-subtitulo-caixa m-0 mr-3 text-center">
+							<i class="{{ resource.iconClass }} fa-2x mr-1"></i>
+							{{ resource.name }}
+						</h5>
+					</div>
+				</div>
+			</div>
+		</ng-container>
+
+		<ng-container *ngIf="cardStyle == cardStyleEnum.HORIZONTAL">
+			<div class="card card-hover w-75" role="button" [routerLink]="resource.url">
+					<div class="row h-100 no-gutters">
+						<div class="col col-3 bg-accent text-base d-flex align-items-center justify-content-center rounded-right">
+							<h5 class="text-center">
+								<i class="{{ resource.iconClass }} fa-3x my-0 mr-1"></i>
+							</h5>
+						</div>
+						<div class="col col-9">
+							<div class="d-flex my-3 align-items-center justify-content-center text-center mb-3">
+								<h4 class="subtitulo mb-0">{{ resource.name }}</h4>
+							</div>
+							<div class="d-flex flex-column align-items-center my-2">
+								<h6 class="text-muted mb-3">{{ resource.description }}</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+		</ng-container>
+
+		<ng-container *ngIf="cardStyle == cardStyleEnum.VERTICAL">
+			<div class="card card-hover cursor-pointer w-50">
+				<div class="d-flex flex-column align-items-center justify-content-center py-4 mb-4 bg-accent text-base rounded-bottom">
+					<h5 class="text-center">
+						<i class="{{ resource.iconClass }} fa-3x"></i>
+					</h5>
+				</div>
+				<div class="d-flex flex-column align-items-center justify-content-center text-center mb-4">
+					<h4 class="subtitulo mb-4">{{ resource.name }}</h4>
+					<h6 class="text-muted">{{ resource.description }}</h6>
+				</div>
+			</div>
+		</ng-container>
+  </div>
+</div>
