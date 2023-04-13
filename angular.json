@@ -46,7 +46,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/styles"
+                "src/custom-styles"
               ]
             },
             "vendorChunk": true,

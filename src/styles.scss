@@ -4,7 +4,7 @@
 @import "./assets/fonts/style.css";
 
 /* Overriden Bootstrap variables */
-@import "./styles/bootstrap-variables-override";
+@import "./custom-styles/bootstrap-variables-override";
 
 // Bootstrap and its default variables
 @import "../node_modules/bootstrap/scss/mixins";
@@ -594,6 +594,8 @@ input::-webkit-inner-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+	-webkit-appearance: textfield;
+	appearance: textfield;
 }
 
 /*
