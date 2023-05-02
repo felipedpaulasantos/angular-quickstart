@@ -8,11 +8,9 @@ import localePt from "@angular/common/locales/pt";
 registerLocaleData(localePt);
 
 import { OAuthModule } from "angular-oauth2-oidc";
-import { NgxSpinnerModule } from "ngx-spinner";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { NgxUiLoaderModule } from "ngx-ui-loader";
 import { ToastrModule } from "ngx-toastr";
-import { DataTablesModule } from "angular-datatables";
 import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 import { PERFECT_SCROLLBAR_CONFIG } from "ngx-perfect-scrollbar";
 import { PerfectScrollbarConfigInterface } from "ngx-perfect-scrollbar";
@@ -25,11 +23,11 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
 import { AppComponent } from "./app.component";
 import { ErrorsModule } from "./errors/errors.module";
-import { GuiaCaixaModule } from "./guia-caixa/guia-caixa.module";
-import { SharedModule } from "./shared/shared.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { HomeModule } from "./home/home.module";
 import { LayoutModule } from "./layout/menu.module";
+import { CaixaSpinnerModule } from "./guia-caixa/components/spinner/caixa-spinner.module";
+import { ModalModule } from "./guia-caixa/components/modal/modal.module";
 
 
 
@@ -47,13 +45,11 @@ import { LayoutModule } from "./layout/menu.module";
 		LayoutModule,
 		HomeModule,
 		ErrorsModule,
-		SharedModule,
 		PerfectScrollbarModule,
-		DataTablesModule,
-		GuiaCaixaModule,
-		NgxSpinnerModule,
+		CaixaSpinnerModule,
 		NgSelectModule,
 		NgxUiLoaderModule,
+		ModalModule,
 		//NgxMaskModule.forRoot(),
 		OAuthModule.forRoot(),
 		ToastrModule.forRoot({

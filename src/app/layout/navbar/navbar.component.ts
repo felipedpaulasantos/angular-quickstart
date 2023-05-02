@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
 	headerLogoMenuClosed = LOGO_HEADER_ABREV;
 	headerLogoMenuOpen = LOGO_HEADER_COMPLETO;
 
-  @ViewChild("headerGeral") headerGeral: ElementRef;
+  @ViewChild("navbar") navbar: ElementRef;
   @Input() tema: Tema;
   @Input() resources;
   user$ = new Observable<User>(null);

@@ -8,7 +8,6 @@ import { InputCaixaDirective } from "./components/input-caixa/input-caixa.direct
 import { SelectCaixaDirective } from "./components/select-caixa/select-caixa.directive";
 import { SelectCaixaComponent } from "./components/select-caixa/select-caixa.component";
 import { SpinnerCaixaComponent } from "./components/spinner/spinner.component";
-import { ModalComponent } from "./components/modal/modal.component";
 import { CardCaixaComponent } from "./components/card-caixa/card-caixa.component";
 import { StepperModule } from "./components/stepper/stepper.module";
 import { CardButtonModule } from "./components/card-button/card-button.module";
@@ -17,6 +16,8 @@ import { CaixaDatatableModule } from "./components/datatable/caixa-datatable.mod
 import { ButtonControlModule } from "./components/button-control/button-control.module";
 import { ExtratoModule } from './components/extrato/extrato.module';
 import { CardPanelModule } from "./components/card-panel/card-panel.module";
+import { CaixaSpinnerModule } from "./components/spinner/caixa-spinner.module";
+import { ModalModule } from "./components/modal/modal.module";
 
 
 
@@ -26,8 +27,6 @@ import { CardPanelModule } from "./components/card-panel/card-panel.module";
 		InputCaixaDirective,
 		SelectCaixaDirective,
     SelectCaixaComponent,
-    SpinnerCaixaComponent,
-		ModalComponent,
     CardCaixaComponent
   ],
   imports: [
@@ -40,15 +39,16 @@ import { CardPanelModule } from "./components/card-panel/card-panel.module";
     CaixaDatatableModule,
     ButtonControlModule,
     ExtratoModule,
-		CardPanelModule
-  ],
+		CardPanelModule,
+		CaixaSpinnerModule,
+		ModalModule
+	],
   exports: [
     InputCaixaComponent,
 		InputCaixaDirective,
 		SelectCaixaDirective,
     SelectCaixaComponent,
     SpinnerCaixaComponent,
-    ModalComponent,
     CardCaixaComponent,
     StepperModule,
     CardButtonModule,
@@ -56,7 +56,8 @@ import { CardPanelModule } from "./components/card-panel/card-panel.module";
     CaixaDatatableModule,
     ButtonControlModule,
     ExtratoModule,
-		CardPanelModule
+		CardPanelModule,
+		ModalModule
   ]
 })
 export class GuiaCaixaModule { }

@@ -97,14 +97,14 @@ body {
 }
 
 header {
-  height: 64px !important;
+  height: 4rem !important;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   z-index: 9;
   width: 100%;
-  box-shadow: var(--cxShadowLg);
+  box-shadow: var(--cxShadowSm);
   background: var(--cxHeaderBgColor);
   color: var(--cxHeaderTextColor);
   // border-bottom: solid 1px var(--cxCancel);
@@ -1074,13 +1074,14 @@ select {
   color: var(--cxSidemenuTextColor);
   width: 80%;
   position: fixed;
-  top: 64px;
+	top: 57px;
   left: 0;
   bottom: 0;
   transition: 0.5s;
   z-index: 999;
-  max-height: calc(100% - 64px);
-  box-shadow: var(--cxShadowLg);
+	height: 100%;
+  max-height: calc(100vh - 57px);
+  box-shadow: var(--cxShadowSm);
 }
 #menuLateral.reduzido {
   width: 165px;
@@ -1112,7 +1113,7 @@ select {
   }
 }
 
-#botaoSipan {
+#botaoLogoMenor {
   white-space: nowrap;
 }
 
