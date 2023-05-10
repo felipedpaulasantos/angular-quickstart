@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, ElementRef, ViewChild, Renderer2 } from "@angular/core";
-import { OAuthService } from "angular-oauth2-oidc";
 import { Observable, of } from "rxjs";
 
 import { UserService } from "../../authentication/users/user.service";
@@ -37,7 +36,6 @@ export class HeaderComponent implements OnInit {
   currentTheme: GlobalThemes;
 
   constructor(
-    private oauthService: OAuthService,
     private userService: UserService,
     private modalService: ModalService,
     private sidemenuService: SideMenuService,
@@ -121,7 +119,6 @@ export class HeaderComponent implements OnInit {
   }
 
   sair(): void {
-    this.oauthService.logOut();
   }
 
   trocaMenuLateral() {

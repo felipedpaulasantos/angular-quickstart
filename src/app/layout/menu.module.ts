@@ -25,7 +25,7 @@ import { SharedModule } from "../shared/shared.module";
     RouterModule,
     SharedModule,
     ReactiveFormsModule,
-    PerfectScrollbarModule
+    //PerfectScrollbarModule
   ],
   exports: [
     HeaderComponent,
