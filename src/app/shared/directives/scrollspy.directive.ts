@@ -6,7 +6,7 @@ import { Directive, Injectable, Input, EventEmitter, Output, ElementRef, HostLis
 export class ScrollSpyDirective {
 	@Input() spiedTags = [];
 	@Output() sectionChange = new EventEmitter<string>();
-	private currentSection: string;
+	private currentSection!: string;
 
 	constructor(private _el: ElementRef) { }
 

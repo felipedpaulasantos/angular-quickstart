@@ -28,29 +28,30 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     public menuService: SideMenuService,
     public styleService: GuiaCaixaStyleService) { }
 
-  @Input() tema: Tema;
+  @Input()
+	tema!: Tema;
   options: AccordionConfig = { multi: false };
 
   @ViewChild("menuLateral", { read: ElementRef })
-  menuLateral: ElementRef;
+	menuLateral!: ElementRef;
 
   @ViewChild("menuTarget", { read: ViewContainerRef })
-  menuTargetRef: ViewContainerRef;
+	menuTargetRef!: ViewContainerRef;
 
   @ViewChild("inputSearch", { read: ElementRef })
-  inputSearch: ElementRef;
+  inputSearch!: ElementRef;
 
 	logo = LOGO_HEADER_ABREV;
-  larguraTela: number;
-  isAberto: boolean;
+  larguraTela!: number;
+  isAberto!: boolean;
 
   componenteParaInjetar: any;
-  injectorComponentParaInjetar: Injector;
+  injectorComponentParaInjetar!: Injector;
 
-  componentRef: ComponentRef<Component>;
-  component: Type<Component>;
-  refInjector: Injector;
-  resolverSub: Subscription;
+  componentRef!: ComponentRef<Component>;
+  component!: Type<Component>;
+  refInjector!: Injector;
+  resolverSub!: Subscription;
 
   menus: AccordionMenu[] = [];
 

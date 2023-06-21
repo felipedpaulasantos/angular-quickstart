@@ -20,10 +20,10 @@ export class AccordionComponent implements OnInit {
     public menuService: SideMenuService
   ) {}
 
-  @Input() options;
-  @Input() menus: AccordionMenu[];
-  config: Config;
-  url: string;
+  @Input() options: Config = {} as Config;
+  @Input() menus: AccordionMenu[] = [];
+  config: Config = {} as Config;
+  url: string = "";
 
   ngOnInit() {
     this.config = this.mergeConfig(this.options);

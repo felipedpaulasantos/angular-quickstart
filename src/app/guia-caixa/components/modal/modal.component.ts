@@ -15,7 +15,7 @@ import { Subscription } from "rxjs";
 import { ModalService } from "../../services/modal.service";
 import { ModalOptions, ModalSize, defaultModalOptions } from "./modal-options";
 
-declare var $;
+declare var $: any;
 
 @Component({
 	selector: "cx-modal",
@@ -30,22 +30,22 @@ export class ModalComponent implements OnInit, OnDestroy {
 	) { }
 
 	@ViewChild("modalDinamico", { read: ViewContainerRef, static: false })
-	modalDinamicoRef: ViewContainerRef;
+	modalDinamicoRef!: ViewContainerRef;
 
-	componenteParaInjetar: Type<Component>;
+	componenteParaInjetar!: Type<Component>;
 	// componenteParaInjetar: any;
-	injectorDoComponenteParaInjetar: Injector;
-	contextoSubscription: Subscription;
+	injectorDoComponenteParaInjetar!: Injector;
+	contextoSubscription!: Subscription;
 
-	componenteInjetadoRef: ComponentRef<Component>;
-	injectorComponenteInjetado: Injector;
+	componenteInjetadoRef!: ComponentRef<Component>;
+	injectorComponenteInjetado!: Injector;
 
-	componenteParaInjetarRef: ComponentRef<any>;
+	componenteParaInjetarRef!: ComponentRef<any>;
 
 	modalSize = ModalSize;
 
 	@ViewChild("defaultModal", { static: true })
-	private modal: ElementRef<HTMLInputElement>;
+	private modal!: ElementRef<HTMLInputElement>;
 
 	public titulo: String = "";
 	public mensagem: String = "";
@@ -125,13 +125,13 @@ export class ModalComponent implements OnInit, OnDestroy {
 		this.modalDinamicoRef.clear();
 		if (this.componenteInjetadoRef) {
 			this.componenteInjetadoRef.destroy();
-			this.componenteInjetadoRef = null;
+			this.componenteInjetadoRef = {} as ComponentRef<Component>;
 		}
 	}
 
 	private clearContext() {
-		this.componentFactoryResolver = null;
-		this.injectorDoComponenteParaInjetar = null;
+		this.componentFactoryResolver;
+		this.injectorDoComponenteParaInjetar = {} as Injector;
 	}
 
 	ngOnDestroy() {

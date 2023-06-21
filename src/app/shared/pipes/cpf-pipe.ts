@@ -16,7 +16,9 @@ export class CpfPipe implements PipeTransform {
       cpfString = cpfString.slice(0, 11);
     }
 
-    const s: string[] = cpfString.match(/.{1,3}/g);
-    return `${s[0]}.${s[1]}.${s[2]}-${s[3]}`;
+    const s = cpfString.match(/.{1,3}/g);
+		if (s) {
+			return `${s[0]}.${s[1]}.${s[2]}-${s[3]}`;
+		}
   }
 }

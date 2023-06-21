@@ -178,7 +178,7 @@ export class StepperComponent implements OnInit, OnChanges, AfterContentInit {
    * Verifica qual ícone deve ser exibido para cada item
    * @param index Índice do item a ser analisado
   */
-  getStepIcon(index: number): string {
+  getStepIcon(index: number): string | null | undefined {
     if (this.freeNavigation) { return null; }
 
     if (!this.freeNavigation) {
@@ -211,6 +211,7 @@ export class StepperComponent implements OnInit, OnChanges, AfterContentInit {
       this.steps = newSteps.slice(0, this.MAXIMUM_STEPS);
       return true;
     }
+		return false;
   }
 
   private isCurrentIndexValid(newSteps: StepperItem[]): boolean {
@@ -218,6 +219,7 @@ export class StepperComponent implements OnInit, OnChanges, AfterContentInit {
       this.currentStep = newSteps.length - 1;
       return true;
     }
+		return false;
   }
 
 }

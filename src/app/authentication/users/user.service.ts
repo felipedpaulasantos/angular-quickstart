@@ -11,7 +11,7 @@ import { User } from "./user";
   providedIn: "root"
 })
 export class UserService {
-  private _user: BehaviorSubject<User> = new BehaviorSubject(null);
+  private _user: BehaviorSubject<User> = new BehaviorSubject({});
 
   constructor(private http: HttpClient) {}
 

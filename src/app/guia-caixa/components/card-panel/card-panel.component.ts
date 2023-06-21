@@ -14,7 +14,7 @@ export class CardPanelComponent implements OnInit {
 	cardStyleEnum = CardPanelStyle;
 
 	@Input()
-	items: AccordionMenu[];
+	items: AccordionMenu[] = [];
 
 	/* TODO: alterar a classe das colunas */
 	@Input()

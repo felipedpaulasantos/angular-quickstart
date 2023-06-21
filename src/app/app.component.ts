@@ -34,8 +34,8 @@ export class AppComponent implements OnInit {
 
   isMenuAberto = false;
   hasAccount = true;
-  temaGlobal: Tema;
-  routeParams: Params;
+  temaGlobal: Tema = {} as Tema;
+  routeParams: Params = {} as Params;
 
   ngOnInit(): void {
     this.setPageTitleAsRoute();

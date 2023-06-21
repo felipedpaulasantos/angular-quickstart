@@ -18,7 +18,7 @@ export interface Breadcrumb {
   styleUrls: ["./breadcrumb.component.css"]
 })
 export class BreadcrumbComponent implements OnInit {
-  public breadcrumbs: Breadcrumb[];
+  public breadcrumbs: Breadcrumb[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 

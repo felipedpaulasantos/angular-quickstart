@@ -24,16 +24,18 @@ export class HeaderComponent implements OnInit {
 	headerLogoMenuClosed = LOGO_HEADER_ABREV;
 	headerLogoMenuOpen = LOGO_HEADER_COMPLETO;
 
-  @ViewChild("navbar") navbar: ElementRef;
-  @Input() tema: Tema;
-  @Input() resources;
-  user$ = new Observable<User>(null);
-  user: User;
-  isMenuAberto: boolean;
-  dataHora: string;
+  @ViewChild("navbar")
+	navbar!: ElementRef;
+  @Input()
+	tema!: Tema;
+  @Input() resources: any;
+  user$ = new Observable<User>();
+  user!: User;
+  isMenuAberto!: boolean;
+  dataHora!: string;
 
-  currentFontSize: string;
-  currentTheme: GlobalThemes;
+  currentFontSize!: string;
+  currentTheme!: GlobalThemes;
 
   constructor(
     private userService: UserService,

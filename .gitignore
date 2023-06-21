@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/docs
 # Only exists if Bazel was run
 /bazel-out
 
@@ -47,3 +48,4 @@ testem.log
 Thumbs.db
 debug.log
 debug.log
+node_modules
