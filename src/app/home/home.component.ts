@@ -1,8 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ComponentFactory, ComponentRef, OnInit, Renderer2 } from "@angular/core";
 import { UntypedFormBuilder, Validators } from "@angular/forms";
 import { AccordionMenu } from "../shared/components/accordion/types/accordion-menu";
 import { mockedSideMenuItems } from "../shared/constants";
 import { CardPanelStyle } from "../guia-caixa/components/card-panel/card-panel-style.enum";
+import { ComponenteParaInjetar, ModalService } from "../guia-caixa/services/modal.service";
+import { InputCaixaComponent } from "../guia-caixa/components/input-caixa/input-caixa.component";
+import { FooterComponent } from "../layout/footer/footer.component";
 
 @Component({
 	selector: "app-home",
@@ -11,24 +14,29 @@ import { CardPanelStyle } from "../guia-caixa/components/card-panel/card-panel-s
 })
 export class HomeComponent implements OnInit {
 
-	constructor(private fb: UntypedFormBuilder) {}
-
-	cardPanelStyle: CardPanelStyle = CardPanelStyle.HORIZONTAL;
-
-	rows: any[] = [];
-	resources: AccordionMenu[] = mockedSideMenuItems;
-
-	contratos = [];
-
-	formCpfNis = this.fb.group({
+	public cardPanelStyle: CardPanelStyle = CardPanelStyle.HORIZONTAL;
+	public rows: any[] = [];
+	public resources: AccordionMenu[] = mockedSideMenuItems;
+	public contratos = [];
+	public formCpfNis = this.fb.group({
 		cpf: [null, [Validators.required]],
 		nis: [null, [Validators.required]],
 	});
-	cliente = null;
+	public cliente = null;
+	public previaSrc: string;
+	public uploadedFile: File = null;
 
-	previaSrc: string;
-	uploadedFile: File = null;
+	constructor(
+		private fb: UntypedFormBuilder,
+		private modalService: ModalService,
+		private renderer: Renderer2
+	) {}
 
 	ngOnInit() {}
+
+	public mostrarModal(): void {
+		const componente: ComponenteParaInjetar = { componente: FooterComponent }
+		this.modalService.injetar(componente);
+	}
 
 }

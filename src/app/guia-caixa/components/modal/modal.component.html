@@ -16,10 +16,8 @@
                 </div>
                 <div class="modal-body text-break {{ modalBodyClass }}">
                     {{mensagem}}
-                    <div id="modalInjectedContent">
-                        <ng-container #modalDinamico>
-            
-                        </ng-container>
+                    <div id="hostConteudoDinamico">
+                        <ng-template modalBodyHost></ng-template>
                     </div>
                 </div>
                 <div class="modal-footer {{ modalFooterClass }}">
@@ -32,7 +30,6 @@
                     </button>
                 </div>
             </ng-container>
-
         </div>
     </div>
 </div>

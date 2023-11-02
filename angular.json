@@ -83,9 +83,36 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "namedChunks": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "dev"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -93,6 +120,9 @@
             "browserTarget": "prototipo-caixa:build"
           },
           "configurations": {
+            "dev": {
+              "browserTarget": "prototipo-caixa:build:dev"
+            },
             "production": {
               "browserTarget": "prototipo-caixa:build:production"
             }

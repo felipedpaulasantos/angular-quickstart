@@ -186,7 +186,7 @@ export class AccordionComponent implements OnInit {
   }
 
   private navigate(url: string) {
-    this.router.navigateByUrl(url).then(msg => console.log("Routing", msg));
+    this.router.navigateByUrl(url);
   }
 
   private callAction(menu: AccordionMenu, index: number) {

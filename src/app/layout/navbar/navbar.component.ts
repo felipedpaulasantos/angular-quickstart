@@ -49,7 +49,6 @@ export class HeaderComponent implements OnInit {
     this.styleService.currentGlobalStyle$.subscribe(theme => this.currentTheme = theme);
     this.showDate();
     this.setDefaultTheme();
-		console.log(this.useHeaderLogo);
   }
 
   fontSizes = [
@@ -83,23 +82,19 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleHeaderBackground() {
-    console.log("TEMA", this.currentTheme);
     const temaAtual = this.currentTheme.value.theme;
     const headerBgVariableValue = this.styleService.getCssVariableValue("--cxHeaderBgColor");
     if (headerBgVariableValue === this.styleService.getCssVariableValue(temaAtual.cxHeaderBgColor)) {
-      console.log("IGUAL", headerBgVariableValue, temaAtual.cxHeaderBgColor);
       this.styleService.setCssVariable(
         "--cxHeaderBgColor",
         "linear-gradient(90deg, #005CA9 40%, #54BBAB 100%)"
       );
     } else {
-      console.log("DIFERENTE", headerBgVariableValue, temaAtual.cxHeaderBgColor);
       this.styleService.setCssVariable(
         "--cxHeaderBgColor",
         this.styleService.getCssVariableValue(temaAtual.cxHeaderBgColor)
       );
     }
-    console.log("HEADER BG COLOR", this.styleService.getCssVariableValue(temaAtual.cxHeaderBgColor));
   }
 
   showLogoutModal() {

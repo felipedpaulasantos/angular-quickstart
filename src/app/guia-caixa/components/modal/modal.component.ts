@@ -3,17 +3,11 @@ import {
 	OnInit,
 	ViewChild,
 	ElementRef,
-	ComponentFactoryResolver,
-	ChangeDetectorRef,
-	ViewContainerRef,
-	ComponentRef,
-	Injector,
-	Type,
-	OnDestroy
-} from "@angular/core";
-import { Subscription } from "rxjs";
-import { ModalService } from "../../services/modal.service";
+	OnDestroy} from "@angular/core";
+import { ComponenteParaInjetar, ModalService } from "../../services/modal.service";
 import { ModalOptions, ModalSize, defaultModalOptions } from "./modal-options";
+import { CxModalDirective } from "./cx-modal.directive";
+import { FooterComponent } from "src/app/layout/footer/footer.component";
 
 declare var $: any;
 
@@ -24,119 +18,40 @@ declare var $: any;
 })
 export class ModalComponent implements OnInit, OnDestroy {
 
-	constructor(
-		private modalService: ModalService,
-		private componentFactoryResolver: ComponentFactoryResolver,
-	) { }
-
-	@ViewChild("modalDinamico", { read: ViewContainerRef, static: false })
-	modalDinamicoRef!: ViewContainerRef;
-
-	componenteParaInjetar!: Type<Component>;
-	// componenteParaInjetar: any;
-	injectorDoComponenteParaInjetar!: Injector;
-	contextoSubscription!: Subscription;
-
-	componenteInjetadoRef!: ComponentRef<Component>;
-	injectorComponenteInjetado!: Injector;
-
-	componenteParaInjetarRef!: ComponentRef<any>;
-
-	modalSize = ModalSize;
-
 	@ViewChild("defaultModal", { static: true })
 	private modal!: ElementRef<HTMLInputElement>;
 
+	@ViewChild(CxModalDirective, {static: true}) 
+	private modalBodyHost!: CxModalDirective;
+
+	public modalSize = ModalSize;
 	public titulo: String = "";
 	public mensagem: String = "";
-
 	public btOkTexto: String = "Ok";
 	public btCancelarTexto: String = "Fechar";
-
 	public showCancelar = false;
-
 	public classTitulo = "text-principal";
-
 	public btnOkClass = "btn btn-accent";
 	public btnCancelarClass = "btn btn-cancel";
-
 	public modalDialogClass = "modal-lg";
 	public modalBodyClass = "";
 	public modalHeaderClass = "bg-accent";
 	public modalFooterClass = "";
-
 	public centralizado = false;
 	public tamanho = ModalSize.NORMAL;
+
+	constructor(
+		private modalService: ModalService
+	) { }
 
 	ngOnInit() {
 		this.modalService.showEvent.subscribe((options: ModalOptions) => {
 			this.config(options);
 			this.show();
 		});
-
-		this.contextoSubscription = this.modalService.contextoInjecaoGenerico$.subscribe(contexto => {
-			this.componentFactoryResolver = contexto.resolver;
-			this.injectorDoComponenteParaInjetar = contexto.injector;
-			this.componenteParaInjetar = contexto.componenteParaInjetar;
-			this.injetarComponenteGenerico();
+		this.modalService.injetarModalDinamico$.subscribe((componente: ComponenteParaInjetar) => {
+			this.loadComponent(componente);
 		});
-
-		this.contextoSubscription = this.modalService.contextoInjecaoInstanciado$.subscribe(
-			(componentRef) => {
-				this.componenteParaInjetarRef = componentRef;
-				this.injetarComponenteInstanciado();
-			});
-	}
-
-	private injetarComponenteGenerico() {
-
-		if (!this.componenteParaInjetar) {
-			this.clearComponent();
-		}
-		if (!this.injectorDoComponenteParaInjetar || !this.componentFactoryResolver) {
-			return;
-		}
-		if (this.componenteInjetadoRef && this.componenteInjetadoRef.componentType
-			&& (this.componenteParaInjetar.toString() === this.componenteInjetadoRef.componentType.toString())) {
-			return;
-		}
-		this.clearComponent();
-		const componentType = this.componenteParaInjetar;
-		const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
-
-		this.injectorComponenteInjetado = Injector.create(
-			[{ provide: componentType, useValue: componentType }],
-			this.injectorDoComponenteParaInjetar
-		);
-		this.componenteInjetadoRef = this.modalDinamicoRef.createComponent(
-			componentFactory, 0, this.injectorComponenteInjetado
-		);
-
-		this.componenteInjetadoRef.changeDetectorRef.detectChanges();
-	}
-
-	private injetarComponenteInstanciado() {
-		this.clearComponent();
-		this.modalDinamicoRef.insert(this.componenteParaInjetarRef.hostView);
-		this.componenteParaInjetarRef.changeDetectorRef.detectChanges();
-	}
-
-	private clearComponent() {
-		this.modalDinamicoRef.clear();
-		if (this.componenteInjetadoRef) {
-			this.componenteInjetadoRef.destroy();
-			this.componenteInjetadoRef = {} as ComponentRef<Component>;
-		}
-	}
-
-	private clearContext() {
-		this.componentFactoryResolver;
-		this.injectorDoComponenteParaInjetar = {} as Injector;
-	}
-
-	ngOnDestroy() {
-		this.contextoSubscription.unsubscribe();
-		this.clearComponent();
 	}
 
 	config(options: ModalOptions) {
@@ -170,4 +85,18 @@ export class ModalComponent implements OnInit, OnDestroy {
 	public ok() {
 		this.modalService.btOKEvent.emit(true);
 	}
+
+	public loadComponent(componente: ComponenteParaInjetar): void {
+		if (!componente) return;
+		const viewContainerRef = this.modalBodyHost.viewContainerRef;
+		viewContainerRef.clear();
+		this.show();
+		const tipo = componente?.componente;
+		const componentRef = viewContainerRef?.createComponent<typeof tipo>(tipo);
+		Object.assign(componentRef?.instance, componente?.data);
+	}
+
+	ngOnDestroy() {
+	}
+
 }
