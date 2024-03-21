@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { UntypedFormBuilder, Validators } from "@angular/forms";
-import { AccordionMenu } from "../shared/components/accordion/types/accordion-menu";
-import { mockedSideMenuItems } from "../shared/constants";
-import { CardPanelStyle } from "../guia-caixa/components/card-panel/card-panel-style.enum";
+import { AccordionMenu } from "../../shared/components/accordion/types/accordion-menu";
+import { mockedSideMenuItems } from "../../shared/constants";
+import { CardPanelStyle } from "../../guia-caixa/components/card-panel/card-panel-style.enum";
 
 @Component({
 	selector: "app-home",

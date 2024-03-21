@@ -16,7 +16,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   buscarUsuario() {
-    return this.http.get(environment.apiUrl + "/usuario").pipe(
+    return this.http.get(environment.ALBUM_API + "/usuario").pipe(
       map(response => {
         return response;
       })
@@ -28,7 +28,7 @@ export class UserService {
   }
 
   cadastrarOuAtualizarUsuario(usuario) {
-    return this.http.post(environment.apiUrl + "/usuario", usuario).pipe(
+    return this.http.post(environment.ALBUM_API + "/usuario", usuario).pipe(
       map(response => {
         return response;
       }),

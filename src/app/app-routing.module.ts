@@ -1,7 +1,9 @@
+import { AlbumModule } from './pages/album/album.module';
+import { AlbumComponent } from './pages/album/album.component';
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-import { HomeComponent } from "./home/home.component";
+import { HomeComponent } from "./pages/home/home.component";
 
 const routes: Routes = [
   {
@@ -15,6 +17,14 @@ const routes: Routes = [
     data: {
       title: "Início",
       animation: "Home"
+    }
+  },
+	{
+    path: "album",
+    loadChildren: () => import('./pages/album/album.module').then(m => m.AlbumModule),
+    data: {
+      title: "Album",
+      animation: "Album"
     }
   },
   {

@@ -28,7 +28,7 @@ import { ErrorsModule } from "./errors/errors.module";
 import { GuiaCaixaModule } from "./guia-caixa/guia-caixa.module";
 import { SharedModule } from "./shared/shared.module";
 import { AppRoutingModule } from "./app-routing.module";
-import { HomeModule } from "./home/home.module";
+import { HomeModule } from "./pages/home/home.module";
 import { LayoutModule } from "./layout/menu.module";
 
 
