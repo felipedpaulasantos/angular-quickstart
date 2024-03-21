@@ -1,5 +1,5 @@
 {
-  "name": "prototipo-caixa",
+  "name": "angular-quickstart",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "prod": "ng build --configuration production --base-href /",
     "e2e": "ng e2e",
-    "ghpages": "ng build --configuration production --output-path docs --base-href https://felipedpaulasantos.github.io/prototipo-caixa/",
+    "ghpages": "ng build --configuration production --output-path docs --base-href https://felipedpaulasantos.github.io/angular-quickstart/",
     "stats": "webpack-bundle-analyzer docs/stats.json"
   },
   "private": true,
