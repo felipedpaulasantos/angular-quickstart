@@ -1,17 +1,23 @@
-<div class="header mb-3">
-	<h1 class="titulo">Fotos</h1>
+<div class="header d-flex mb-3">
+	<div class="d-flex mr-auto">
+		<h1 class="titulo">Fotos</h1>
+	</div>
 
-	<button class="btn btn-aux mr-4"
-	[ngClass]="{active: tipoExibicao == 'TABELA'}"
-	(click)="tipoExibicao = 'TABELA'">
-		<i class="fa fa-table mr-2"></i>Tabela
-	</button>
+	<div class="d-flex align-items-center">
+		<h4 class="mb-0 mr-3">Exibição:</h4>
 
-	<button class="btn btn-aux"
-	[ngClass]="{active: tipoExibicao == 'CARD'}"
-	(click)="tipoExibicao = 'CARD'">
-		<i class="fa fa-th mr-2"></i>Card
-	</button>
+		<button class="btn btn-aux mr-4"
+		[ngClass]="{'active': tipoExibicao == 'TABELA'}"
+		(click)="tipoExibicao = 'TABELA'">
+			<i class="fa fa-table mr-2"></i>Tabela
+		</button>
+
+		<button class="btn btn-aux"
+		[ngClass]="{'active': tipoExibicao == 'CARD'}"
+		(click)="tipoExibicao = 'CARD'">
+			<i class="fa fa-th mr-2"></i>Card
+		</button>
+	</div>
 </div>
 
 
@@ -93,7 +99,7 @@
 								class="btn btn-sm btn-danger btn-remove-carrinho"
 								title="Remover do carrinho">
 									<i class="fa fa-trash"></i>
-									<span class="ml-2">Remover do carrinho</span>
+									<span class="texto-botao ml-2">Remover do carrinho</span>
 								</button>
 							</ng-container>
 							<ng-template #naoEstaNoCarrinho>
@@ -101,7 +107,7 @@
 								class="btn btn-sm btn-success btn-add-carrinho"
 								title="Adicionar ao carrinho">
 									<i class="fa fa-plus"></i>
-									<span class="ml-2">Adicionar ao carrinho</span>
+									<span class="texto-botao ml-2">Adicionar ao carrinho</span>
 								</button>
 							</ng-template>
 						</td>

@@ -1,5 +1,5 @@
 import { AlbumItem } from './../../models/album.model';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Input, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 import { Subject } from "rxjs";
@@ -15,9 +15,6 @@ import { AccordionMenu } from "src/app/shared/components/accordion/types/accordi
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlbumComponent implements OnInit {
-exibe($event: any) {
- console.log($event)
-}
 
 	@Input()
 	public items: Array<AlbumItem[]> = [];
@@ -32,6 +29,7 @@ exibe($event: any) {
 	public dtSettings: DataTableSettings = DataTableConfig.DEFAULT_SETTINGS;
 	public tipoExibicao: string = 'CARD';
 	public page: number = 1;
+	public ultimaLarguraTela: number;
 	public filter: string = '';
 	private itemsCarrinho: AlbumItem[] = [];
 
@@ -44,6 +42,24 @@ exibe($event: any) {
 	) {
 		this.carrinhoService.itensCarrinho$.subscribe(items => this.itemsCarrinho = items);
 	}
+
+	@HostListener("window:resize", ["$event"])
+  onResize() {
+    const larguraTela = window.innerWidth;
+		this.ultimaLarguraTela = larguraTela;
+		if (larguraTela < 570) {
+			this.organizaItems(this.albumItems, 1)
+
+		} else if (larguraTela < 1040) {
+			this.organizaItems(this.albumItems, 2)
+		} else if (larguraTela < 1322) {
+			this.organizaItems(this.albumItems, 3)
+		} else if (larguraTela < 1604) {
+			this.organizaItems(this.albumItems, 4)
+		} else {
+			this.organizaItems(this.albumItems, 5)
+		}
+  }
 
   ngOnInit() {
 		this.consultaApi();
@@ -61,17 +77,13 @@ exibe($event: any) {
 		});
 	}
 
-	public async organizaItems(albumItems: AlbumItem[]): Promise<void> {
+	public async organizaItems(albumItems: AlbumItem[], numberOfColumns = 5): Promise<void> {
 		this.albumItems = albumItems;
-		albumItems.forEach(async (item) => {
-			//Utils.imageFromUrlToBase64(item.url).then(base64 => item.url = base64);
-			//await Utils.imageFromUrlToBase64(item.thumbnailUrl).then(base64 => item.thumbnailUrl = base64);
-		});
-		this.items = this.groupColumns(albumItems, 5);
+		if (!this.ultimaLarguraTela) this.onResize();
+		this.items = this.groupColumns(albumItems, numberOfColumns);
 		this.dtTrigger.next(true);
 		this.cdr.markForCheck();
 		this.loading.hide('global');
-		//console.log(this.items)
 	}
 
   private groupColumns(resources: AlbumItem[], n: number): any[][] {
