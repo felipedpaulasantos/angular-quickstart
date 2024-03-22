@@ -34,6 +34,14 @@
 						<div class="img-container">
 							<img class="img-fluid" [src]="item.thumbnailUrl">
 						</div>
+						<div  class="d-none bg-transparent">
+							<button (click)="adicionarAoCarrinho(item)"
+							class="btn btn-sm btn-success btn-add-carrinho"
+							title="Adicionar ao carrinho">
+								<i class="fa fa-plus"></i>
+								<span class="ml-2">Adicionar ao carrinho</span>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -67,7 +75,24 @@
 							</div>
 						</td>
 						<td>{{ item.title }}</td>
-						<td></td>
+						<td>
+							<ng-container *ngIf="estaNoCarrinho(item); else naoEstaNoCarrinho">
+								<button (click)="removerDoCarrinho(item)"
+								class="btn btn-sm btn-danger btn-remove-carrinho"
+								title="Remover do carrinho">
+									<i class="fa fa-trash"></i>
+									<span class="ml-2">Remover do carrinho</span>
+								</button>
+							</ng-container>
+							<ng-template #naoEstaNoCarrinho>
+								<button (click)="adicionarAoCarrinho(item)"
+								class="btn btn-sm btn-success btn-add-carrinho"
+								title="Adicionar ao carrinho">
+									<i class="fa fa-plus"></i>
+									<span class="ml-2">Adicionar ao carrinho</span>
+								</button>
+							</ng-template>
+						</td>
 					</tr>
 				</tbody>
 			</table>

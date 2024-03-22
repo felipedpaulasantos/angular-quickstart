@@ -58,7 +58,28 @@
         </div>
       </div>
 
-      <!-- <div class="notification-container" data-toggle="dropdown" role="button">
+      <div class="notification-container">
+        <div class="dropdown">
+          <button class="btn btn-link btn-sm shadow-none border-0 dropdown-toggle"
+          data-toggle="dropdown" title="Modo Escuro">
+            <i role="button" class="fa fa-shopping-cart mr-2 fa-2x"></i>
+          </button>
+          <div class="dropdown-menu p-2">
+						<div class="d-flex align-items-center justify-content-center">
+							<ng-container *ngIf="(itemsCarrinho$ | async).length > 0 else carrinhoVazio">
+								<div class="row" *ngFor="let item of itemsCarrinho$ | async">
+									<div class="col">{{ item.title }}</div>
+								</div>
+							</ng-container>
+							<ng-template #carrinhoVazio>
+								<p>O carrinho está vazio!</p>
+							</ng-template>
+						</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notification-container" data-toggle="dropdown" role="button">
         <button class="btn btn-link btn-sm shadow-none border-0">
           <i role="button" class="fa fa-bell fa-2x" title="Notificações"></i>
         </button>
@@ -78,7 +99,7 @@
         <span class="dropdown-item">
           Você tem 5 mensagens
         </span>
-      </div> -->
+      </div>
     </div>
 
     <!-- <button class="btn btn-link border mx-4">

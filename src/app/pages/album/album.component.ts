@@ -1,9 +1,11 @@
+import { AlbumItem } from './../../models/album.model';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from "ngx-toastr";
 import { Subject } from "rxjs";
 import { DataTableSettings, DataTableConfig } from "src/app/guia-caixa/components/datatable/datatable-definitions";
-import { AlbumItem } from "src/app/models/album.model";
 import { AlbumService } from "src/app/services/album.service";
+import { CarrinhoService } from "src/app/services/carrinho.service";
 import { AccordionMenu } from "src/app/shared/components/accordion/types/accordion-menu";
 
 @Component({
@@ -27,13 +29,18 @@ export class AlbumComponent implements OnInit {
 	public dtSettings: DataTableSettings = DataTableConfig.DEFAULT_SETTINGS;
 	public tipoExibicao: string = 'CARD';
 	public page: number = 1;
-	filter: string = '';
+	public filter: string = '';
+	private itemsCarrinho: AlbumItem[] = [];
 
   constructor(
 		private albumService: AlbumService,
+		private carrinhoService: CarrinhoService,
+		private mensagemService: ToastrService,
 		public loading: NgxSpinnerService,
 		public cdr: ChangeDetectorRef
-	) { }
+	) {
+		this.carrinhoService.itensCarrinho$.subscribe(items => this.itemsCarrinho = items);
+	}
 
   ngOnInit() {
 		this.consultaApi();
@@ -74,6 +81,20 @@ export class AlbumComponent implements OnInit {
       newRows.push(filteredResources.slice(index, index + n));
     }
 		return newRows;
+	}
+
+	public adicionarAoCarrinho(item: AlbumItem): void {
+		this.carrinhoService.addItemCarrinho(item);
+		this.mensagemService.info("Item adicionado ao carrinho!");
+	}
+
+	public removerDoCarrinho(item: AlbumItem): void {
+		this.carrinhoService.removeItemCarrinho(item);
+		this.mensagemService.info("Item removido do carrinho!");
+	}
+
+	public estaNoCarrinho(item: AlbumItem): boolean {
+		return this.itemsCarrinho.indexOf(item) != -1;
 	}
 
 }

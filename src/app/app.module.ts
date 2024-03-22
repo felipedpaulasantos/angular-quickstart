@@ -61,7 +61,7 @@ import { LayoutModule } from "./layout/menu.module";
 		ToastrModule.forRoot({
 			timeOut: 5000,
 			progressBar: false,
-			positionClass: "toast-bottom-center",
+			positionClass: "toast-top-center",
 			closeButton: true,
 			tapToDismiss: false,
 			preventDuplicates: true,

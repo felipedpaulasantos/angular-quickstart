@@ -10,6 +10,8 @@ import { Tema } from "src/app/guia-caixa/services/style-guia-caixa.service";
 import { LOGO_CAIXA_BRANCO_SRC, LOGO_COMPLETO_BRANCO_SRC, LOGO_HEADER_ABREV, LOGO_HEADER_COMPLETO, Meses } from "src/app/guia-caixa/constants/constants";
 import { StyleService } from "src/app/services/style.service";
 import { GlobalThemes } from "src/app/models/global-style";
+import { CarrinhoService } from "src/app/services/carrinho.service";
+import { AlbumItem } from "src/app/models/album.model";
 
 @Component({
   selector: "app-navbar",
@@ -18,30 +20,33 @@ import { GlobalThemes } from "src/app/models/global-style";
 })
 export class HeaderComponent implements OnInit {
 
-	useImgLogo = false;
-	useHeaderLogo = true;
-	imgLogoMenuClosed = LOGO_CAIXA_BRANCO_SRC;
-  imgLogoMenuOpen = LOGO_COMPLETO_BRANCO_SRC;
-	headerLogoMenuClosed = LOGO_HEADER_ABREV;
-	headerLogoMenuOpen = LOGO_HEADER_COMPLETO;
+	public useImgLogo = false;
+	public useHeaderLogo = true;
+	public imgLogoMenuClosed = LOGO_CAIXA_BRANCO_SRC;
+  public imgLogoMenuOpen = LOGO_COMPLETO_BRANCO_SRC;
+	public headerLogoMenuClosed = LOGO_HEADER_ABREV;
+	public headerLogoMenuOpen = LOGO_HEADER_COMPLETO;
 
   @ViewChild("headerGeral") headerGeral: ElementRef;
   @Input() tema: Tema;
   @Input() resources;
-  user$ = new Observable<User>(null);
-  user: User;
-  isMenuAberto: boolean;
-  dataHora: string;
+  public user$ = new Observable<User>(null);
+  public user: User;
+  public isMenuAberto: boolean;
+  public dataHora: string;
 
-  currentFontSize: string;
-  currentTheme: GlobalThemes;
+  public currentFontSize: string;
+  public currentTheme: GlobalThemes;
+
+	public itemsCarrinho$: Observable<AlbumItem[]>;
 
   constructor(
     private oauthService: OAuthService,
     private userService: UserService,
     private modalService: ModalService,
     private sidemenuService: SideMenuService,
-    private styleService: StyleService
+    private styleService: StyleService,
+		private carrinhoService: CarrinhoService
   ) {
     this.user$ = this.userService.perfil;
     this.sidemenuService.isAberto$.subscribe(isAberto => this.isMenuAberto = isAberto);
@@ -49,6 +54,7 @@ export class HeaderComponent implements OnInit {
     this.styleService.currentGlobalStyle$.subscribe(theme => this.currentTheme = theme);
     this.showDate();
     this.setDefaultTheme();
+		this.itemsCarrinho$ = this.carrinhoService.itensCarrinho$;
   }
 
   fontSizes = [
