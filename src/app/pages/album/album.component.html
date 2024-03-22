@@ -1,5 +1,63 @@
-<h1>Album</h1>
+<div class="header mb-3">
+	<h1 class="titulo">Álbum</h1>
 
-<div *ngFor="let albumItem of albumItems">
+	<button class="btn btn-aux mr-4"
+	[ngClass]="{active: tipoExibicao == 'TABELA'}"
+	(click)="tipoExibicao = 'TABELA'">
+		<i class="fa fa-table mr-2"></i>Tabela
+	</button>
 
+	<button class="btn btn-aux"
+	[ngClass]="{active: tipoExibicao == 'CARD'}"
+	(click)="tipoExibicao = 'CARD'">
+		<i class="fa fa-th mr-2"></i>Card
+	</button>
+</div>
+
+
+<!-- Cards -->
+<div *ngIf="tipoExibicao == 'CARD'" class="album-items-rows">
+	<div class="row mb-3" *ngFor="let row of items">
+		<div class="col" *ngFor="let item of row">
+			<div class="card card-hover">
+				<div class="card-header">{{ item.title }}</div>
+				<div class="card-body">
+					<div class="d-flex">
+						<div class="img-container">
+							<img class="img-fluid" [src]="item.thumbnailUrl">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Tabela -->
+<div *ngIf="tipoExibicao == 'TABELA' && albumItems?.length > 0" class="card">
+	<div class="card-body">
+		<cx-datatable [trigger]="dtTrigger" [settings]="dtSettings">
+			<table datatable class="table table-hover">
+				<thead>
+					<tr>
+						<th>Foto</th>
+						<th>Título</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let item of albumItems">
+						<td>
+							<div class="img-container">
+								<img class="img-fluid" [src]="item.thumbnailUrl">
+							</div>
+						</td>
+						<td>{{ item.title }}</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</cx-datatable>
+	</div>
 </div>

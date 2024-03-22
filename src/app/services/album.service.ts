@@ -16,7 +16,11 @@ private ALBUM_API_URL = environment.ALBUM_API;
 	) { }
 
 	public consultaApiAlbum(): Observable<AlbumItem[]> {
-		return this.http.get<AlbumItem[]>(this.ALBUM_API_URL);
+		const url = `${this.ALBUM_API_URL}`;
+		return this.http.get<AlbumItem[]>(
+			url,
+			{ headers: { 'Content-type': 'application/json; charset=UTF-8' } }
+		);
 	}
 
 }
