@@ -7,7 +7,7 @@ export abstract class Utils {
 	 */
 	public static async imageFromUrlToBase64(imgUrl): Promise<string> {
     const data = await fetch(imgUrl);
-    const blob = await data.blob();
+    const blob = await data?.blob();
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.readAsDataURL(blob);
@@ -17,7 +17,6 @@ export abstract class Utils {
       }
     });
   }
-
 
 	public static isNullOrUndefined(value: any): boolean {
     return value === undefined || value === null;
