@@ -386,6 +386,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ngx-highlightjs
 MIT
 
+ngx-pagination
+MIT
+
 ngx-perfect-scrollbar
 MIT
 
