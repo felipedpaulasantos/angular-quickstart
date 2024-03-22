@@ -1,9 +1,9 @@
 <header #headerGeral id="headerGeral">
 
   <nav id="headerNav">
-    <span class="sidemenu-collapse-icon" role="button" (click)="trocaMenuLateral()">
+    <!-- <span class="sidemenu-collapse-icon" role="button" (click)="trocaMenuLateral()">
       <i class="fas fa-bars fa-lg"></i>
-    </span>
+    </span> -->
     <div id="spanLogo" class="h-100"  [ngClass]="{'menu-is-aberto': isMenuAberto}">
       <div (dblclick)="toggleHeaderBackground()" class="d-flex align-items-center h-100">
         <ng-container *ngIf="useImgLogo; else headerLogoContainer">

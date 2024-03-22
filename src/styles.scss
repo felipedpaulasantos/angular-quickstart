@@ -1116,6 +1116,8 @@ select {
   z-index: 999;
   max-height: calc(100% - 64px);
   box-shadow: var(--cxShadowLg);
+	margin-left: -500px;
+	visibility: hidden;
 }
 #menuLateral.reduzido {
   width: 165px;

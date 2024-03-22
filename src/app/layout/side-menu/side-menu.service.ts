@@ -23,11 +23,13 @@ export class SideMenuService {
   menuItems$ = this.menuItemsSource.asObservable();
 
   public trocar() {
-    this.abertoSource.next(!this.abertoSource.value);
+    //this.abertoSource.next(!this.abertoSource.value);
+		this.abertoSource.next(false);
   }
 
   public abrir() {
-    this.abertoSource.next(true);
+    //this.abertoSource.next(true);
+		this.abertoSource.next(false);
   }
 
   public fechar() {

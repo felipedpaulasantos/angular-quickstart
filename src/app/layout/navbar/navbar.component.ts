@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
 	public useHeaderLogo = true;
 	public imgLogoMenuClosed = LOGO_CAIXA_BRANCO_SRC;
   public imgLogoMenuOpen = LOGO_COMPLETO_BRANCO_SRC;
-	public headerLogoMenuClosed = LOGO_HEADER_ABREV;
+	public headerLogoMenuClosed = LOGO_HEADER_COMPLETO;
 	public headerLogoMenuOpen = LOGO_HEADER_COMPLETO;
 
   @ViewChild("headerGeral") headerGeral: ElementRef;
