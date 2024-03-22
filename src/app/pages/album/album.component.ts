@@ -27,11 +27,12 @@ export class AlbumComponent implements OnInit {
 	public dtSettings: DataTableSettings = DataTableConfig.DEFAULT_SETTINGS;
 	public tipoExibicao: string = 'CARD';
 	public page: number = 1;
+	filter: string = '';
 
   constructor(
 		private albumService: AlbumService,
 		public loading: NgxSpinnerService,
-		private cdr: ChangeDetectorRef
+		public cdr: ChangeDetectorRef
 	) { }
 
   ngOnInit() {
@@ -50,7 +51,7 @@ export class AlbumComponent implements OnInit {
 		});
 	}
 
-	private async organizaItems(albumItems: AlbumItem[]): Promise<void> {
+	public async organizaItems(albumItems: AlbumItem[]): Promise<void> {
 		this.albumItems = albumItems;
 		albumItems.forEach(async (item) => {
 			//Utils.imageFromUrlToBase64(item.url).then(base64 => item.url = base64);
@@ -63,11 +64,11 @@ export class AlbumComponent implements OnInit {
 		//console.log(this.items)
 	}
 
-  private groupColumns(resources: any[], n: number): any[][] {
-    // const filteredResources = resources.filter(resource => {
-    //   return (resource.enabled && resource.isLink);
-    // });
-		const filteredResources = resources;
+  private groupColumns(resources: AlbumItem[], n: number): any[][] {
+    const filteredResources = resources.filter(resource => {
+			if (!this.filter) return true;
+      return resource.title.indexOf(this.filter) !== -1;
+    });
     const newRows = [];
     for (let index = 0; index < filteredResources.length; index += n) {
       newRows.push(filteredResources.slice(index, index + n));

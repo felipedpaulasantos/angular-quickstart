@@ -14,6 +14,13 @@
 	</button>
 </div>
 
+<div class="input-container d-flex align-items-center w-25 mb-3">
+	<i class="fa fa-search mr-3"></i>
+	<input class="form-control d-inline-block"
+	(input)="filter = $event.target.value; organizaItems(albumItems)"
+	placeholder="Filtro...">
+</div>
+
 
 <!-- Cards -->
 <div *ngIf="tipoExibicao == 'CARD'" class="album-items-rows">
