@@ -219,8 +219,8 @@ export const LOGO_CAIXA_BRANCO_SRC = "assets/images/caixa-logo-x-branco.png";
 export const LOGO_CAIXA_SRC = "assets/images/caixa-logo-x.png";
 export const LOGO_COMPLETO_SRC = "assets/images/caixa-logo-completo.png";
 export const LOGO_COMPLETO_BRANCO_SRC = "assets/images/caixa-logo-completo-branco.png";
-export const LOGO_HEADER_COMPLETO = "QUICKSTART";
-export const LOGO_HEADER_ABREV = "Q";
+export const LOGO_HEADER_COMPLETO = "TEIA";
+export const LOGO_HEADER_ABREV = "T";
 
 export enum Meses {
 	JAN = 0,
