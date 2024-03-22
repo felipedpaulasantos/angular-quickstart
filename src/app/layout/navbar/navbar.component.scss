@@ -56,10 +56,6 @@
 
 .descricao-carrinho {
 	white-space: nowrap;
-	overflow: hidden;
+	overflow-x: clip;
 	text-overflow: ellipsis;
 }
-
-// .descricao-carrinho:hover {
-// 	overflow: visible;
-// }

@@ -1,12 +1,20 @@
+import { ToastrService } from 'ngx-toastr';
 import { AlbumItem } from './../../models/album.model';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
-import { ToastrService } from "ngx-toastr";
+
 import { Subject } from "rxjs";
 import { DataTableSettings, DataTableConfig } from "src/app/guia-caixa/components/datatable/datatable-definitions";
 import { AlbumService } from "src/app/services/album.service";
 import { CarrinhoService } from "src/app/services/carrinho.service";
 import { AccordionMenu } from "src/app/shared/components/accordion/types/accordion-menu";
+
+/**
+ * O componente AlbumComponent representa a pagina que exibe os items retornados da API
+ * Eh utilizada a estrategia ChangeDetectionStrategy.OnPush em razao do grande volume de componentes exibidos
+ * Nessa estrategia, apenas quando um valor Input, Output ou async eh atualizado que o sistema de change detection sera disparado
+ * Ou quando explicitamente chamado, com o cdr.markForCheck()
+ */
 
 @Component({
   selector: 'app-album',
@@ -16,21 +24,40 @@ import { AccordionMenu } from "src/app/shared/components/accordion/types/accordi
 })
 export class AlbumComponent implements OnInit {
 
-	@Input()
-	public items: Array<AlbumItem[]> = [];
-
-	@Input()
-	public itemsPerColumn = 3;
-
+	/**
+	 * A propriedade rows eh um agrupamento de arrays de album items
+	 * O objetivo eh agrupar os items em pequenos grupos de tamanho definido, para facilitar a organizacao na tela
+	 * Esta organizacao soh eh usada no modo Card
+	 */
+	public rowsOfAlbumItems: Array<AlbumItem[]> = [];
 	public albumItems: AlbumItem[] = [];
-	public rows: AccordionMenu[] = [];
+
+	/**
+	 * Propriedades utilizadas no componente Datatable
+	 */
 	public tableTrigger = new Subject<any>();
 	public dtTrigger = new Subject<any>();
 	public dtSettings: DataTableSettings = DataTableConfig.DEFAULT_SETTINGS;
+
+	/**
+	 * Controla o tipo de exibicao dos items, conforme selecao do usuario
+	 */
 	public tipoExibicao: string = 'CARD';
+
+	/**
+	 * Controle da paginacao
+	 */
 	public page: number = 1;
-	public ultimaLarguraTela: number;
 	public filter: string = '';
+
+	/**
+	 * Determina o tamanho dos grupos de rowsOfAlbumItems, conforme tamanho da tela depois do resize
+	 */
+	public ultimaLarguraTela: number;
+
+	/**
+	 * Espelho da propriedade de carrinhoService
+	 */
 	private itemsCarrinho: AlbumItem[] = [];
 
   constructor(
@@ -40,9 +67,12 @@ export class AlbumComponent implements OnInit {
 		public loading: NgxSpinnerService,
 		public cdr: ChangeDetectorRef
 	) {
-		this.carrinhoService.itensCarrinho$.subscribe(items => this.itemsCarrinho = items);
+		this.carrinhoService.itemsCarrinho$.subscribe(items => this.itemsCarrinho = items);
 	}
 
+	/**
+	 * Ao haver redimensionamento da tela, tbm ajusta o tamanho dos grupos de items no modo Card
+	 */
 	@HostListener("window:resize", ["$event"])
   onResize() {
     const larguraTela = window.innerWidth;
@@ -65,6 +95,7 @@ export class AlbumComponent implements OnInit {
 		this.consultaApi();
   }
 
+
 	private consultaApi(): void {
 		this.loading.show('global');
 		this.albumService.consultaApiAlbum().subscribe({
@@ -80,7 +111,7 @@ export class AlbumComponent implements OnInit {
 	public async organizaItems(albumItems: AlbumItem[], numberOfColumns = 5): Promise<void> {
 		this.albumItems = albumItems;
 		if (!this.ultimaLarguraTela) this.onResize();
-		this.items = this.groupColumns(albumItems, numberOfColumns);
+		this.rowsOfAlbumItems = this.groupColumns(albumItems, numberOfColumns);
 		this.dtTrigger.next(true);
 		this.cdr.markForCheck();
 		this.loading.hide('global');

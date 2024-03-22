@@ -1,9 +1,6 @@
 <header #headerGeral id="headerGeral">
 
   <nav id="headerNav">
-    <!-- <span class="sidemenu-collapse-icon" role="button" (click)="trocaMenuLateral()">
-      <i class="fas fa-bars fa-lg"></i>
-    </span> -->
     <div id="spanLogo" class="h-100"  [ngClass]="{'menu-is-aberto': isMenuAberto}">
       <div (dblclick)="toggleHeaderBackground()" class="d-flex align-items-center h-100">
         <ng-container *ngIf="useImgLogo; else headerLogoContainer">
@@ -14,10 +11,6 @@
 				</ng-template>
       </div>
     </div>
-
-    <!-- <h4 class="d-none d-md-block mb-0 ml-2 subtitulo full-opacity">
-      Olá, {{ user.nome_completo }}
-    </h4> -->
 
     <div id="painelDataHora" class="d-none d-lg-flex h-100 align-items-center ml-auto mr-4">
       <h6 class="subtitulo m-0 full-opacity">
@@ -69,47 +62,19 @@
           </button>
           <div class="dropdown-menu p-2">
 						<h6 class="dropdown-header text-center">Items no carrinho</h6>
-						<div class="d-flex flex-column justify-content-center" style="max-height: 10rem; max-width: 20rem;">
+						<div class="d-flex flex-column justify-content-center" style="max-height: 10rem; max-width: 20rem; overflow: auto;">
 							<ng-container *ngIf="(itemsCarrinho$ | async).length > 0 else carrinhoVazio">
-								<p [title]="item.title" class="descricao-carrinho" *ngFor="let item of itemsCarrinho$ | async; let i = index;">
+								<p [title]="item.title" class="descricao-carrinho mb-0" *ngFor="let item of itemsCarrinho$ | async; let i = index;">
 									{{ i + 1 }}: {{ item.title }}
 								</p>
 							</ng-container>
 							<ng-template #carrinhoVazio>
-								<p>O carrinho está vazio!</p>
+								<p class="mb-0">O carrinho está vazio!</p>
 							</ng-template>
 						</div>
           </div>
         </div>
       </div>
-
-      <div class="notification-container" data-toggle="dropdown" role="button">
-        <button class="btn btn-link btn-sm shadow-none border-0">
-          <i role="button" class="fa fa-bell fa-2x" title="Notificações"></i>
-        </button>
-      </div>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-        <span class="dropdown-item">
-          Você tem 2 notificações
-        </span>
-      </div>
-
-      <div class="notification-container" role="button" data-toggle="dropdown">
-        <button class="btn btn-link btn-sm shadow-none border-0">
-          <i role="button" class="fa fa-envelope fa-2x" title="Mensagens"></i>
-        </button>
-      </div>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-        <span class="dropdown-item">
-          Você tem 5 mensagens
-        </span>
-      </div>
     </div>
-
-    <!-- <button class="btn btn-link border mx-4">
-      <i class="fa fa-sign-out-alt fa-lg mr-2"></i>
-      <span class="text-uppercase font-fam-bold">Sair</span>
-    </button> -->
-
   </nav>
 </header>

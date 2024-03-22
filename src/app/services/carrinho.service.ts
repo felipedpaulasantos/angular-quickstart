@@ -9,20 +9,20 @@ export class CarrinhoService {
 
   constructor() { }
 
-	private itensCarrinhoSubject = new BehaviorSubject<AlbumItem[]>([]);
-	public itensCarrinho$ = this.itensCarrinhoSubject.asObservable();
+	private itemsCarrinhoSubject = new BehaviorSubject<AlbumItem[]>([]);
+	public itemsCarrinho$ = this.itemsCarrinhoSubject.asObservable();
 
 	public addItemCarrinho(item: AlbumItem): void {
-		this.itensCarrinhoSubject.value.push(item);
+		this.itemsCarrinhoSubject.value.push(item);
 	}
 
 	public removeItemCarrinho(item: AlbumItem): void {
-		const itemIndex = this.itensCarrinhoSubject.value.indexOf(item);
-		this.itensCarrinhoSubject.value.splice(itemIndex, 1);
+		const itemIndex = this.itemsCarrinhoSubject.value.indexOf(item);
+		this.itemsCarrinhoSubject.value.splice(itemIndex, 1);
 	}
 
 	private setItemsCarrinho(items: AlbumItem[]): void {
-		this.itensCarrinhoSubject.next(items);
+		this.itemsCarrinhoSubject.next(items);
 	}
 
 }

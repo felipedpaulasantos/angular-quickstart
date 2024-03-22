@@ -7,13 +7,13 @@
 		<h4 class="mb-0 mr-3">Exibição:</h4>
 
 		<button class="btn btn-aux mr-4"
-		[ngClass]="{'active': tipoExibicao == 'TABELA'}"
+		[ngClass]="{'active bg-main border-main': tipoExibicao == 'TABELA'}"
 		(click)="tipoExibicao = 'TABELA'">
 			<i class="fa fa-table mr-2"></i>Tabela
 		</button>
 
 		<button class="btn btn-aux"
-		[ngClass]="{'active': tipoExibicao == 'CARD'}"
+		[ngClass]="{'active bg-main border-main': tipoExibicao == 'CARD'}"
 		(click)="tipoExibicao = 'CARD'">
 			<i class="fa fa-th mr-2"></i>Card
 		</button>
@@ -31,9 +31,9 @@
 		placeholder="Pesquisar">
 	</div>
 
-	<div class="row mb-3" *ngFor="let row of items | paginate: { itemsPerPage: 2, currentPage: page }">
+	<div class="row mb-3" *ngFor="let row of rowsOfAlbumItems | paginate: { itemsPerPage: 2, currentPage: page }">
 		<div class="col" *ngFor="let item of row">
-			<div class="card card-hover"
+			<div class="card card-hover" [ngClass]="{'border-success': estaNoCarrinho(item)}"
 			(mouseenter)="$event.target.classList.add('exibir-botoes');"
 			(mouseleave)="$event.target.classList.remove('exibir-botoes');">
 				<div class="card-header">{{ item.title }}</div>
@@ -77,43 +77,45 @@
 <div *ngIf="tipoExibicao == 'TABELA' && albumItems?.length > 0" class="card">
 	<div class="card-body">
 		<cx-datatable [trigger]="dtTrigger" [settings]="dtSettings">
-			<table datatable class="table table-hover">
-				<thead>
-					<tr>
-						<th>Foto</th>
-						<th>Título</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr *ngFor="let item of albumItems">
-						<td>
-							<div class="img-container">
-								<img class="img-fluid" [src]="item.thumbnailUrl">
-							</div>
-						</td>
-						<td>{{ item.title }}</td>
-						<td>
-							<ng-container *ngIf="estaNoCarrinho(item); else naoEstaNoCarrinho">
-								<button (click)="removerDoCarrinho(item)"
-								class="btn btn-sm btn-danger btn-remove-carrinho"
-								title="Remover do carrinho">
-									<i class="fa fa-trash"></i>
-									<span class="texto-botao ml-2">Remover do carrinho</span>
-								</button>
-							</ng-container>
-							<ng-template #naoEstaNoCarrinho>
-								<button (click)="adicionarAoCarrinho(item)"
-								class="btn btn-sm btn-success btn-add-carrinho"
-								title="Adicionar ao carrinho">
-									<i class="fa fa-plus"></i>
-									<span class="texto-botao ml-2">Adicionar ao carrinho</span>
-								</button>
-							</ng-template>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="table-responsive">
+				<table datatable class="table table-hover">
+					<thead>
+						<tr>
+							<th>Foto</th>
+							<th>Título</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let item of albumItems">
+							<td>
+								<div class="img-container">
+									<img class="img-fluid" [src]="item.thumbnailUrl">
+								</div>
+							</td>
+							<td>{{ item.title }}</td>
+							<td>
+								<ng-container *ngIf="estaNoCarrinho(item); else naoEstaNoCarrinho">
+									<button (click)="removerDoCarrinho(item)"
+									class="btn btn-sm btn-danger btn-remove-carrinho"
+									title="Remover do carrinho">
+										<i class="fa fa-trash"></i>
+										<span class="texto-botao ml-2">Remover do carrinho</span>
+									</button>
+								</ng-container>
+								<ng-template #naoEstaNoCarrinho>
+									<button (click)="adicionarAoCarrinho(item)"
+									class="btn btn-sm btn-success btn-add-carrinho"
+									title="Adicionar ao carrinho">
+										<i class="fa fa-plus"></i>
+										<span class="texto-botao ml-2">Adicionar ao carrinho</span>
+									</button>
+								</ng-template>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</cx-datatable>
 	</div>
 </div>

@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
     this.styleService.currentGlobalStyle$.subscribe(theme => this.currentTheme = theme);
     this.showDate();
     this.setDefaultTheme();
-		this.itemsCarrinho$ = this.carrinhoService.itensCarrinho$;
+		this.itemsCarrinho$ = this.carrinhoService.itemsCarrinho$;
 		this.naoFecharDropdownAoClicarDentro();
   }
 
