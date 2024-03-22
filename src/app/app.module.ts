@@ -11,6 +11,7 @@ import { OAuthModule } from "angular-oauth2-oidc";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { NgxUiLoaderModule } from "ngx-ui-loader";
+import {NgxPaginationModule} from 'ngx-pagination';
 import { ToastrModule } from "ngx-toastr";
 import { DataTablesModule } from "angular-datatables";
 import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
@@ -54,6 +55,7 @@ import { LayoutModule } from "./layout/menu.module";
 		NgxSpinnerModule,
 		NgSelectModule,
 		NgxUiLoaderModule,
+		NgxPaginationModule,
 		//NgxMaskModule.forRoot(),
 		OAuthModule.forRoot(),
 		ToastrModule.forRoot({

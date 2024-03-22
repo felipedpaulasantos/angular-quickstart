@@ -953,6 +953,41 @@ select {
   opacity: 0.8
 }
 
+/* PAGINACAO */
+.ngx-pagination {
+	display: flex;
+	width: fit-content;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	li {
+		border-radius: 5px !important;
+	}
+	li>a,
+	li.current>span,
+	li.disabled {
+		padding-top: 0.8rem;
+		padding-bottom: 0.8rem;
+		padding-left: 1.2rem;
+		padding-right: 1.2rem;
+		border-radius: 5px;
+	}
+	li.current {
+		padding: 0;
+	}
+	li:not(.disabled) a {
+		color: var(--cxContrast) !important;
+	}
+	li.disabled a {
+		color: var(--cxCancel) !important;
+	}
+	.current {
+		background-color: var(--cxAccent) !important;
+		>span {
+			display: inline-block;
+		}
+	}
+}
+
 /*
   CLASSES AUXILIARES
 */

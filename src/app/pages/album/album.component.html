@@ -17,8 +17,8 @@
 
 <!-- Cards -->
 <div *ngIf="tipoExibicao == 'CARD'" class="album-items-rows">
-	<div class="row mb-3" *ngFor="let row of items">
-		<div class="col" *ngFor="let item of row">
+	<div class="row mb-3" *ngFor="let row of items | paginate: { itemsPerPage: 2, currentPage: page }">
+		<div class="col" *ngFor="let item of row ">
 			<div class="card card-hover">
 				<div class="card-header">{{ item.title }}</div>
 				<div class="card-body">
@@ -31,7 +31,15 @@
 			</div>
 		</div>
 	</div>
+	<pagination-controls
+		(pageChange)="page = $event"
+		previousLabel="Anterior"
+		nextLabel="Próximo"
+		responsive="true"
+	></pagination-controls>
 </div>
+
+
 
 
 <!-- Tabela -->

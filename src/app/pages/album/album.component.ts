@@ -1,35 +1,37 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { NgxSpinner, NgxSpinnerService } from "ngx-spinner";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { NgxSpinnerService } from "ngx-spinner";
 import { Subject } from "rxjs";
 import { DataTableSettings, DataTableConfig } from "src/app/guia-caixa/components/datatable/datatable-definitions";
 import { AlbumItem } from "src/app/models/album.model";
 import { AlbumService } from "src/app/services/album.service";
 import { AccordionMenu } from "src/app/shared/components/accordion/types/accordion-menu";
-import { Utils } from "src/app/shared/utils";
 
 @Component({
   selector: 'app-album',
   templateUrl: './album.component.html',
-  styleUrls: ['./album.component.scss']
+  styleUrls: ['./album.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlbumComponent implements OnInit {
 
 	@Input()
-	items: Array<AlbumItem[]> = [];
+	public items: Array<AlbumItem[]> = [];
 
 	@Input()
-	itemsPerColumn = 3;
+	public itemsPerColumn = 3;
 
 	public albumItems: AlbumItem[] = [];
 	public rows: AccordionMenu[] = [];
 	public tableTrigger = new Subject<any>();
 	public dtTrigger = new Subject<any>();
 	public dtSettings: DataTableSettings = DataTableConfig.DEFAULT_SETTINGS;
-	public tipoExibicao: string = 'TABELA';
+	public tipoExibicao: string = 'CARD';
+	public page: number = 1;
 
   constructor(
 		private albumService: AlbumService,
-		public loading: NgxSpinnerService
+		public loading: NgxSpinnerService,
+		private cdr: ChangeDetectorRef
 	) { }
 
   ngOnInit() {
@@ -54,8 +56,9 @@ export class AlbumComponent implements OnInit {
 			//Utils.imageFromUrlToBase64(item.url).then(base64 => item.url = base64);
 			//await Utils.imageFromUrlToBase64(item.thumbnailUrl).then(base64 => item.thumbnailUrl = base64);
 		});
-		this.items = this.groupColumns(albumItems.slice(0,10), 5);
+		this.items = this.groupColumns(albumItems, 5);
 		this.dtTrigger.next(true);
+		this.cdr.markForCheck();
 		this.loading.hide('global');
 		//console.log(this.items)
 	}
