@@ -40,7 +40,10 @@
 		}
 		&.exibir-botoes {
 			z-index: 1;
-			display: inline-block;
+			//display: inline-block;
+			height: 1px;
+			background: transparent;
+			box-shadow: none;
 			.card-footer {
 				display: block;
 				position: relative;

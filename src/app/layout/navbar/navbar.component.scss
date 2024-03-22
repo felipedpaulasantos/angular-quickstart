@@ -23,16 +23,15 @@
 
 /* Make the badge float in the top right corner of the button */
 .notification-badge {
-  background-color: #fa3e3e;
+  background-color: var(--cxSuccess);
   border-radius: 0.9rem;
-  color: white;
-
-  padding: 0.1rem 0.3rem;
-  font-size: 0.9rem;
-
-  position: absolute; /* Position the badge within the relatively positioned button */
-  top: -5px;
-  right: -5px;
+  color: var(--cxBase);
+	padding: 0.1rem 0.4rem;
+  font-size: 0.8rem;
+  position: absolute;
+  top: -2px;
+  right: 12px;
+  z-index: 9;
 }
 
 .square {

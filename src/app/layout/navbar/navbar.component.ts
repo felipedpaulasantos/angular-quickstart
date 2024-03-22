@@ -55,9 +55,20 @@ export class HeaderComponent implements OnInit {
     this.showDate();
     this.setDefaultTheme();
 		this.itemsCarrinho$ = this.carrinhoService.itensCarrinho$;
+		this.naoFecharDropdownAoClicarDentro();
   }
 
-  fontSizes = [
+	/**
+	 * Fix do dropdown do Bootstrap
+	 * Ao clicar na area interna do dropdown, ele nao fechara
+	 */
+	private naoFecharDropdownAoClicarDentro() {
+		$(document).on('click', '.notification-container .dropdown-menu', function (e) {
+			e.stopPropagation();
+		});
+	}
+
+  public fontSizes = [
     { name: "Pequeno", value: "13px" },
     { name: "Médio", value: "14px" },
     { name: "Grande", value: "15px" },
@@ -65,7 +76,7 @@ export class HeaderComponent implements OnInit {
     { name: "Extra Grande", value: "17px" }
   ];
 
-  themes: GlobalThemes[] = [];
+  public themes: GlobalThemes[] = [];
 
   ngOnInit(): void {
     this.user = this.setMockUser();
@@ -87,7 +98,7 @@ export class HeaderComponent implements OnInit {
     this.themes = themes;
   }
 
-  toggleHeaderBackground() {
+  public toggleHeaderBackground() {
     const temaAtual = this.currentTheme.value.theme;
     const headerBgVariableValue = this.styleService.getCssVariableValue("--cxHeaderBgColor");
     if (headerBgVariableValue === this.styleService.getCssVariableValue(temaAtual.cxHeaderBgColor)) {
@@ -103,7 +114,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  showLogoutModal() {
+  public showLogoutModal() {
     this.modalService.show({
       showCancelar: true,
       titulo: "Logout",
@@ -121,15 +132,15 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  sair(): void {
+  public sair(): void {
     this.oauthService.logOut();
   }
 
-  trocaMenuLateral() {
+  public trocaMenuLateral() {
     this.sidemenuService.trocar();
   }
 
-  setMockUser(): User {
+  public setMockUser(): User {
     return {
       nome_completo: "Usuário Teste",
       primeiro_nome: "Usuário",
@@ -138,14 +149,14 @@ export class HeaderComponent implements OnInit {
     };
   }
 
-  showDate(): void {
+  public showDate(): void {
     this.setDate(new Date());
     setInterval(() => {
       this.setDate(new Date());
     }, 1000);
   }
 
-  setDate(data: Date) {
+  public setDate(data: Date) {
     const hora = String(data.getHours()).padStart(2, "0");
     const minutos = String(data.getMinutes()).padStart(2, "0");
     const dia = String(data.getDate()).padStart(2, "0");
@@ -155,19 +166,19 @@ export class HeaderComponent implements OnInit {
     this.dataHora = `${hora}h${minutos} - ${dia} ${mes} ${ano}`;
   }
 
-  setFontSize(fontSize: string): void {
+  public setFontSize(fontSize: string): void {
     this.styleService.setFontSize(fontSize);
   }
 
-  setTheme(tema: string) {
+  public setTheme(tema: string) {
     this.styleService.setGlobalTheme(tema);
   }
 
-  setDefaultTheme() {
+  public setDefaultTheme() {
     this.styleService.setDefaultStyle();
   }
 
-	getLogo(): string | null {
+	public getLogo(): string | null {
 		if (this.useImgLogo) return this.isMenuAberto ? this.imgLogoMenuOpen : this.imgLogoMenuClosed;
 		if (this.useHeaderLogo) return this.isMenuAberto ? this.headerLogoMenuOpen : this.headerLogoMenuClosed;
 	}
