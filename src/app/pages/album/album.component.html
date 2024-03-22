@@ -26,23 +26,35 @@
 	</div>
 
 	<div class="row mb-3" *ngFor="let row of items | paginate: { itemsPerPage: 2, currentPage: page }">
-		<div class="col" *ngFor="let item of row ">
-			<div class="card card-hover">
+		<div class="col" *ngFor="let item of row">
+			<div class="card card-hover"
+			(mouseenter)="$event.target.classList.add('exibir-botoes');"
+			(mouseleave)="$event.target.classList.remove('exibir-botoes');">
 				<div class="card-header">{{ item.title }}</div>
 				<div class="card-body">
 					<div class="d-flex">
 						<div class="img-container">
 							<img class="img-fluid" [src]="item.thumbnailUrl">
 						</div>
-						<div  class="d-none bg-transparent">
-							<button (click)="adicionarAoCarrinho(item)"
-							class="btn btn-sm btn-success btn-add-carrinho"
-							title="Adicionar ao carrinho">
-								<i class="fa fa-plus"></i>
-								<span class="ml-2">Adicionar ao carrinho</span>
-							</button>
-						</div>
 					</div>
+				</div>
+				<div class="card-footer bg-none">
+					<ng-container *ngIf="estaNoCarrinho(item); else naoEstaNoCarrinho">
+						<button (click)="removerDoCarrinho(item)"
+						class="btn btn-sm btn-danger btn-remove-carrinho"
+						title="Remover do carrinho">
+							<i class="fa fa-trash"></i>
+							<span class="ml-2">Remover do carrinho</span>
+						</button>
+					</ng-container>
+					<ng-template #naoEstaNoCarrinho>
+						<button (click)="adicionarAoCarrinho(item)"
+						class="btn btn-sm btn-success btn-add-carrinho"
+						title="Adicionar ao carrinho">
+							<i class="fa fa-plus"></i>
+							<span class="ml-2">Adicionar ao carrinho</span>
+						</button>
+					</ng-template>
 				</div>
 			</div>
 		</div>

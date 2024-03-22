@@ -61,15 +61,16 @@
       <div class="notification-container">
         <div class="dropdown">
           <button class="btn btn-link btn-sm shadow-none border-0 dropdown-toggle"
-          data-toggle="dropdown" title="Modo Escuro">
+          data-toggle="dropdown" title="Carrinho">
             <i role="button" class="fa fa-shopping-cart mr-2 fa-2x"></i>
           </button>
           <div class="dropdown-menu p-2">
-						<div class="d-flex align-items-center justify-content-center">
+						<h6 class="dropdown-header text-center">Items no carrinho</h6>
+						<div class="d-flex flex-column justify-content-center" style="max-height: 10rem; max-width: 20rem;">
 							<ng-container *ngIf="(itemsCarrinho$ | async).length > 0 else carrinhoVazio">
-								<div class="row" *ngFor="let item of itemsCarrinho$ | async">
-									<div class="col">{{ item.title }}</div>
-								</div>
+								<p [title]="item.title" class="descricao-carrinho" *ngFor="let item of itemsCarrinho$ | async">
+									{{ item.title }}
+								</p>
 							</ng-container>
 							<ng-template #carrinhoVazio>
 								<p>O carrinho está vazio!</p>

@@ -26,10 +26,10 @@
   background-color: #fa3e3e;
   border-radius: 0.9rem;
   color: white;
- 
+
   padding: 0.1rem 0.3rem;
   font-size: 0.9rem;
-  
+
   position: absolute; /* Position the badge within the relatively positioned button */
   top: -5px;
   right: -5px;
@@ -54,3 +54,13 @@
   padding: 1.5rem;
   height: 100%;
 }
+
+.descricao-carrinho {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+// .descricao-carrinho:hover {
+// 	overflow: visible;
+// }

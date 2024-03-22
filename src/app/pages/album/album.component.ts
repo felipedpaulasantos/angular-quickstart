@@ -15,6 +15,9 @@ import { AccordionMenu } from "src/app/shared/components/accordion/types/accordi
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlbumComponent implements OnInit {
+exibe($event: any) {
+ console.log($event)
+}
 
 	@Input()
 	public items: Array<AlbumItem[]> = [];

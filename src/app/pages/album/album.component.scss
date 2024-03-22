@@ -21,8 +21,6 @@
 	}
 }
 
-
-
 .album-items-rows {
 	.card {
 		min-width: 18rem;
@@ -31,12 +29,35 @@
 		max-height: 18rem;
 		max-height: 18rem;
 		height: 18rem;
+		z-index: 1;
+		position: relative;
 		.card-header {
 			height: 4rem;
 		}
 		.img-container {
 			display: flex;
 			margin: auto;
+		}
+		&.exibir-botoes {
+			z-index: 1;
+			display: inline-block;
+			.card-footer {
+				display: block;
+				position: relative;
+				z-index: 9;
+			}
+			.img-container {
+				display: none;
+				z-index: 1;
+			}
+		}
+		.card-footer {
+			display: none;
+		}
+		&.exibir-botoes {
+			.card-footer {
+				display: block;
+			}
 		}
 	}
 }
