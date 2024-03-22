@@ -1,5 +1,5 @@
 <div class="header mb-3">
-	<h1 class="titulo">Álbum</h1>
+	<h1 class="titulo">Fotos</h1>
 
 	<button class="btn btn-aux mr-4"
 	[ngClass]="{active: tipoExibicao == 'TABELA'}"
@@ -14,16 +14,17 @@
 	</button>
 </div>
 
-<div class="input-container d-flex align-items-center w-25 mb-3">
-	<i class="fa fa-search mr-3"></i>
-	<input class="form-control d-inline-block"
-	(input)="filter = $event.target.value; organizaItems(albumItems)"
-	placeholder="Filtro...">
-</div>
-
 
 <!-- Cards -->
 <div *ngIf="tipoExibicao == 'CARD'" class="album-items-rows">
+
+	<div class="input-container d-flex align-items-center mb-3">
+		<i class="fa fa-search mr-3"></i>
+		<input class="form-control d-inline-block"
+		(input)="filter = $event.target.value; organizaItems(albumItems)"
+		placeholder="Pesquisar">
+	</div>
+
 	<div class="row mb-3" *ngFor="let row of items | paginate: { itemsPerPage: 2, currentPage: page }">
 		<div class="col" *ngFor="let item of row ">
 			<div class="card card-hover">
@@ -45,9 +46,6 @@
 		responsive="true"
 	></pagination-controls>
 </div>
-
-
-
 
 <!-- Tabela -->
 <div *ngIf="tipoExibicao == 'TABELA' && albumItems?.length > 0" class="card">
