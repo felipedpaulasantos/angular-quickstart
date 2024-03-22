@@ -44,17 +44,22 @@
 			margin: auto;
 		}
 		&.exibir-botoes {
-			//display: inline-block;
-			height: 1px;
-			background: transparent;
-			box-shadow: none;
+			.card-body {
+				background-color: var(--cxBase);
+				filter: brightness(70%);
+			}
+			.card-header {
+				border-radius: 0 !important;
+				filter: brightness(70%);
+			}
 			.card-footer {
-				display: block;
+				display: flex !important;
+				align-items: center;
+				justify-content: center;
 				position: relative;
+				z-index: 9999;
 			}
-			.img-container {
-				display: none;
-			}
+
 		}
 		.card-footer {
 			display: none;
