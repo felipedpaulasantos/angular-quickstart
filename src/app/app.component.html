@@ -5,12 +5,7 @@
 <main>
   <app-side-menu></app-side-menu>
 
-  <section id="conteudoPrincipal" [ngClass]="{'sidemenu-hidden': !isMenuAberto}">
-    <div id="mobileBackdrop"
-      (click)="menuService.fechar()"
-      [ngClass]="{'sidemenu-shown': isMenuAberto}">
-    </div>
-
+  <section id="conteudoPrincipal">
     <div id="painelConteudoPrincipal">
       <app-breadcrumb></app-breadcrumb>
       <div [@routeAnimations]="prepareRoute(outlet)">

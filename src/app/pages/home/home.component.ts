@@ -18,17 +18,6 @@ export class HomeComponent implements OnInit {
 	rows: any[] = [];
 	resources: AccordionMenu[] = mockedSideMenuItems;
 
-	contratos = [];
-
-	formCpfNis = this.fb.group({
-		cpf: [null, [Validators.required]],
-		nis: [null, [Validators.required]],
-	});
-	cliente = null;
-
-	previaSrc: string;
-	uploadedFile: File = null;
-
 	ngOnInit() {
 		this.rows = this.groupColumns(this.resources);
 	}

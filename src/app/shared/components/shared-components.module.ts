@@ -4,42 +4,26 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { RouterModule } from "@angular/router";
 import { HighlightModule } from "ngx-highlightjs";
 
-import { TooltipIconComponent } from "./tooltip-icon/tooltip-icon.component";
-import { BackButtonComponent } from "./buttons/back-button/back-button.component";
 import { AccordionComponent } from "./accordion/accordion.component";
-import { CodeViewComponent } from "./code-view/code-view.component";
-import { StepperModule } from "../../guia-caixa/components/stepper/stepper.module";
-import { CodeFixedNavComponent } from "./code-fixed-nav/code-fixed-nav.component";
-import { DocumentacaoTemplateComponent } from "./documentacao-template/documentacao-template.component";
-import { DocumentacaoApiTableComponent } from './documentacao-api-table/documentacao-api-table.component';
 import { MenuItemComponent } from "./accordion/menu-item/menu-item.component";
+import { CardPanelModule } from "src/app/guia-caixa/components/card-panel/card-panel.module";
+import { CardPanelComponent } from "src/app/guia-caixa/components/card-panel/card-panel.component";
 
 @NgModule({
 	declarations: [
-		TooltipIconComponent,
-		BackButtonComponent,
 		AccordionComponent,
-		CodeViewComponent,
-		MenuItemComponent,
-		CodeFixedNavComponent,
-		DocumentacaoTemplateComponent,
-		DocumentacaoApiTableComponent
+		MenuItemComponent
 	],
 	imports: [
 		CommonModule,
 		NgxSpinnerModule,
 		RouterModule,
 		HighlightModule,
-		StepperModule
+		CardPanelModule
 	],
 	exports: [
-		TooltipIconComponent,
-		BackButtonComponent,
 		AccordionComponent,
-		CodeViewComponent,
-		CodeFixedNavComponent,
-		DocumentacaoTemplateComponent,
-		DocumentacaoApiTableComponent
+		CardPanelComponent
 	]
 })
 export class SharedComponentsModule { }

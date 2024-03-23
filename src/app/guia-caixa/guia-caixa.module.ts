@@ -5,18 +5,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
 
 import { InputCaixaComponent } from "./components/input-caixa/input-caixa.component";
 import { InputCaixaDirective } from "./components/input-caixa/input-caixa.directive";
-import { SelectCaixaDirective } from "./components/select-caixa/select-caixa.directive";
-import { SelectCaixaComponent } from "./components/select-caixa/select-caixa.component";
 import { SpinnerCaixaComponent } from "./components/spinner/spinner.component";
 import { ModalComponent } from "./components/modal/modal.component";
-import { CardCaixaComponent } from "./components/card-caixa/card-caixa.component";
-import { StepperModule } from "./components/stepper/stepper.module";
-import { CardButtonModule } from "./components/card-button/card-button.module";
-import { TimelineModule } from "./components/timeline/timeline.module";
 import { CaixaDatatableModule } from "./components/datatable/caixa-datatable.module";
-import { ButtonControlModule } from "./components/button-control/button-control.module";
-import { ExtratoModule } from './components/extrato/extrato.module';
-import { CardPanelModule } from "./components/card-panel/card-panel.module";
 
 
 
@@ -24,39 +15,21 @@ import { CardPanelModule } from "./components/card-panel/card-panel.module";
   declarations: [
     InputCaixaComponent,
 		InputCaixaDirective,
-		SelectCaixaDirective,
-    SelectCaixaComponent,
     SpinnerCaixaComponent,
-		ModalComponent,
-    CardCaixaComponent
+		ModalComponent
   ],
   imports: [
     CommonModule,
     NgxSpinnerModule,
     ReactiveFormsModule,
-    StepperModule,
-    CardButtonModule,
-    TimelineModule,
     CaixaDatatableModule,
-    ButtonControlModule,
-    ExtratoModule,
-		CardPanelModule
   ],
   exports: [
     InputCaixaComponent,
 		InputCaixaDirective,
-		SelectCaixaDirective,
-    SelectCaixaComponent,
     SpinnerCaixaComponent,
     ModalComponent,
-    CardCaixaComponent,
-    StepperModule,
-    CardButtonModule,
-    TimelineModule,
-    CaixaDatatableModule,
-    ButtonControlModule,
-    ExtratoModule,
-		CardPanelModule
+    CaixaDatatableModule
   ]
 })
 export class GuiaCaixaModule { }

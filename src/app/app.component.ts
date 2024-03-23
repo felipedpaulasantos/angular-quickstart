@@ -7,7 +7,6 @@ import { fadeInAnimation } from "./shared/animations/simple-fade.animation";
 import { UserService } from "./authentication/users/user.service";
 import { GuiaCaixaStyleService, Tema } from "./guia-caixa/services/style-guia-caixa.service";
 import { UrlRedirectService } from "./services/url-redirect.service";
-import { NgxSpinnerService, Spinner } from "ngx-spinner";
 import { SideMenuService } from "./layout/side-menu/side-menu.service";
 
 
@@ -26,22 +25,15 @@ export class AppComponent implements OnInit {
     public menuService: SideMenuService,
     public userService: UserService,
     public styleService: GuiaCaixaStyleService,
-    public redirectService: UrlRedirectService,
-    private spinner: NgxSpinnerService
+    public redirectService: UrlRedirectService
   ) {
     // this.authService.initSSO();
   }
 
-  isMenuAberto = false;
-  hasAccount = true;
   temaGlobal: Tema;
-  routeParams: Params;
 
   ngOnInit(): void {
     this.setPageTitleAsRoute();
-    this.menuService.isAberto$.subscribe(isAberto => {
-      this.isMenuAberto = isAberto;
-    });
     this.styleService.globalTheme$.subscribe(tema => this.temaGlobal = tema);
   }
 

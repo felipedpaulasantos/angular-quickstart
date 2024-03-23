@@ -1,5 +1,3 @@
-import { AlbumModule } from './pages/album/album.module';
-import { AlbumComponent } from './pages/album/album.component';
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
@@ -8,7 +6,7 @@ import { HomeComponent } from "./pages/home/home.component";
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "album",
+    redirectTo: "home",
     pathMatch: "full"
   },
   {
@@ -29,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: "**",
-    redirectTo: "album",
+    redirectTo: "home",
     pathMatch: "full"
   }
 ];

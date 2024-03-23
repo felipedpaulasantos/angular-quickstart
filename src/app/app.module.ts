@@ -30,7 +30,7 @@ import { GuiaCaixaModule } from "./guia-caixa/guia-caixa.module";
 import { SharedModule } from "./shared/shared.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { HomeModule } from "./pages/home/home.module";
-import { LayoutModule } from "./layout/menu.module";
+import { LayoutModule } from "./layout/layout.module";
 
 
 
