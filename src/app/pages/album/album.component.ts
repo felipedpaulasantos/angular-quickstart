@@ -95,8 +95,7 @@ export class AlbumComponent implements OnInit {
 		this.consultaApi();
   }
 
-
-	private consultaApi(): void {
+  private consultaApi(): void {
 		this.loading.show('global');
 		this.albumService.consultaApiAlbum().subscribe({
 			next: (apiResponse) => this.organizaItems(apiResponse),
@@ -111,13 +110,13 @@ export class AlbumComponent implements OnInit {
 	public async organizaItems(albumItems: AlbumItem[], numberOfColumns = 5): Promise<void> {
 		this.albumItems = albumItems;
 		if (!this.ultimaLarguraTela) this.onResize();
-		this.rowsOfAlbumItems = this.groupColumns(albumItems, numberOfColumns);
+		this.rowsOfAlbumItems = this.agrupaColunas(albumItems, numberOfColumns);
 		this.dtTrigger.next(true);
 		this.cdr.markForCheck();
 		this.loading.hide('global');
 	}
 
-  private groupColumns(resources: AlbumItem[], n: number): any[][] {
+  private agrupaColunas(resources: AlbumItem[], n: number): any[][] {
     const filteredResources = resources.filter(resource => {
 			if (!this.filter) return true;
       return resource.title.indexOf(this.filter) !== -1;

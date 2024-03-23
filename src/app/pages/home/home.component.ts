@@ -19,10 +19,10 @@ export class HomeComponent implements OnInit {
 	resources: AccordionMenu[] = mockedSideMenuItems;
 
 	ngOnInit() {
-		this.rows = this.groupColumns(this.resources);
+		this.rows = this.agrupaColunas(this.resources);
 	}
 
-	groupColumns(resources: any[]): any[] {
+	public agrupaColunas(resources: any[]): any[] {
 		const filteredResources = resources.filter((resource) => {
 			return (
 				resource.enabled &&
